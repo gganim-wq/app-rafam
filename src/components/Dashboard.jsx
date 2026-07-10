@@ -82,10 +82,7 @@ export default function Dashboard({ activeNode, activeModule = 'estructura_rafam
               <p className="text-xs md:text-sm text-slate-300 font-sans leading-relaxed">
                 {currentModule.descripcion}
               </p>
-              <div className="text-[10px] text-slate-500 font-mono flex items-center gap-1.5 justify-center md:justify-start">
-                <span>Cuaderno ID:</span>
-                <span className="bg-white/5 px-2 py-0.5 rounded text-slate-400 select-all font-bold">{currentModule.notebookId}</span>
-              </div>
+
             </div>
           </div>
 
