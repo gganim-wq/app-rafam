@@ -12,7 +12,8 @@ import {
   ChevronDown,
   Info,
   CornerDownRight,
-  Brain
+  Brain,
+  FileText
 } from 'lucide-react';
 import { getModuleById } from '../utils/modules';
 
@@ -30,6 +31,8 @@ export default function ChatConsole({
 }) {
   const [isOpen, setIsOpen] = useState(forceFullscreen);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [complementaryText, setComplementaryText] = useState('');
+  const [showExtraContextPanel, setShowExtraContextPanel] = useState(false);
 
   useEffect(() => {
     if (forceFullscreen) {
@@ -53,6 +56,13 @@ export default function ChatConsole({
     } else {
       const total = getModuleById(activeModule).preguntasRapidas.length;
       setSuggestionOffset(prev => (prev + 3) % total);
+    }
+  };
+
+  const handleSuggestionClick = (q) => {
+    const confirmacion = window.confirm(`¿Desea realizar la siguiente consulta sugerida?\n\n"${q}"`);
+    if (confirmacion) {
+      handleSend(null, q);
     }
   };
 
@@ -84,7 +94,7 @@ export default function ChatConsole({
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, loading]);
 
-  const handleSend = async (e, overrideText = null, overrideLength = null) => {
+  const handleSend = async (e, overrideText = null, overrideLength = null, apiQueryOverride = null) => {
     if (e) e.preventDefault();
     const query = (overrideText || inputText).trim();
     if (!query) return;
@@ -107,12 +117,17 @@ export default function ChatConsole({
     setLoading(true);
 
     try {
-      let apiQuery = query;
-      const isSystemCommand = query.toLowerCase().includes('ragchas');
+      let apiQuery = apiQueryOverride || query;
+      const isSystemCommand = apiQuery.toLowerCase().includes('ragchas') || apiQuery.toLowerCase().startsWith('enviar notebookml');
+      
       if (activeModule !== 'estructura_rafam' && !isSystemCommand) {
         const currentModule = getModuleById(activeModule);
         if (currentModule && currentModule.notebookId) {
-          apiQuery = `${query}\n\n[DIRECTIVA DE CONTROL CONTABLE RAG RAFAM]\nResponde única y exclusivamente basándote en el documento seleccionado. Si la respuesta no figura de forma explícita en él, di textualmente: "No se encontró información sobre este tema en el documento seleccionado". Bajo ninguna circunstancia uses conocimientos externos ni supongas datos.\n[FORCED_NOTEBOOK: ${currentModule.notebookId}]`;
+          if (complementaryText.trim()) {
+            apiQuery = `${query}\n\n[TEXTO COMPLEMENTARIO DE USUARIO A ANALIZAR]:\n${complementaryText.trim()}\n\n[DIRECTIVA DE CONTROL CONTABLE RAG RAFAM]\nResponde única y exclusivamente basándote en los documentos del cuaderno y en el texto complementario provisto arriba. Contrasta ambos si es necesario. Si la respuesta no figura de forma explícita en ellos, di textualmente: "No se encontró información sobre este tema en el documento seleccionado". Bajo ninguna circunstancia uses conocimientos externos ni supongas datos.\n[FORCED_NOTEBOOK: ${currentModule.notebookId}]`;
+          } else {
+            apiQuery = `${query}\n\n[DIRECTIVA DE CONTROL CONTABLE RAG RAFAM]\nResponde única y exclusivamente basándote en el documento seleccionado. Si la respuesta no figura de forma explícita en él, di textualmente: "No se encontró información sobre este tema en el documento seleccionado". Bajo ninguna circunstancia uses conocimientos externos ni supongas datos.\n[FORCED_NOTEBOOK: ${currentModule.notebookId}]`;
+          }
         }
       }
 
@@ -211,8 +226,8 @@ export default function ChatConsole({
     } else if (actionType === 'Análisis') {
       const confirmacion = window.confirm(`¿Desea solicitar el Análisis Crítico y Evaluación de Riesgos para la consulta anterior?\n\nConsulta: "${lastUserQuery}"`);
       if (!confirmacion) return;
-      const analysisQuery = `Realiza un análisis crítico detallado y una evaluación de riesgos presupuestarios basándote en la consulta previa: "${lastUserQuery}"`;
-      handleSend(null, analysisQuery);
+      const displayQuery = `Realiza un análisis crítico detallado y una evaluación de riesgos presupuestarios basándote en la consulta previa: "${lastUserQuery}"`;
+      handleSend(null, displayQuery, null, "RAGCHAS Analisis");
     } else if (actionType === 'NotebookLM') {
       const now = new Date();
       const defaultName = `RAG Auditoría - ${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`;
@@ -334,6 +349,23 @@ export default function ChatConsole({
             <option value="gemini-2.5-flash">gemini-2.5-flash</option>
             <option value="gemini-2.5-pro">gemini-2.5-pro</option>
           </select>
+
+          {/* Botón de Contexto Adicional (sólo visible si activeModule es un manual) */}
+          {activeModule !== 'estructura_rafam' && (
+            <button
+              onClick={() => setShowExtraContextPanel(!showExtraContextPanel)}
+              className={`px-2 py-1 text-[9px] font-mono rounded transition-all flex items-center gap-1 border ${
+                complementaryText.trim()
+                  ? 'bg-neonPurple/20 text-neonPurple border-neonPurple/40 animate-pulse'
+                  : showExtraContextPanel
+                  ? 'bg-white/10 text-white border-white/20'
+                  : 'bg-rafamDark-950 text-slate-500 hover:text-slate-300 border-white/5'
+              }`}
+            >
+              <FileText className="w-3 h-3" />
+              {complementaryText.trim() ? 'Contexto Activo' : 'Contexto Extra'}
+            </button>
+          )}
 
           {/* Botones de control */}
           <div className="flex items-center gap-1.5 border-l border-white/10 pl-2">
@@ -524,7 +556,7 @@ export default function ChatConsole({
                   <button
                     key={idx}
                     type="button"
-                    onClick={() => handleSend(null, q)}
+                    onClick={() => handleSuggestionClick(q)}
                     className="px-2.5 py-1 rounded-full bg-rafamDark-950/60 border border-white/5 text-[9px] text-slate-300 hover:text-white hover:border-neonBlue/40 active:scale-95 transition-all truncate max-w-[200px]"
                     title={q}
                   >
@@ -539,6 +571,33 @@ export default function ChatConsole({
               >
                 Proponer otras
               </button>
+            </div>
+          )}
+
+          {/* Panel de Contexto Adicional Colapsable */}
+          {showExtraContextPanel && (
+            <div className="px-4 py-3 border-t border-white/5 bg-rafamDark-950/90 flex flex-col gap-2 animate-fadeIn">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] font-mono text-neonPurple font-bold uppercase tracking-wider flex items-center gap-1">
+                  📝 Texto Complementario para Análisis
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setComplementaryText('')}
+                  className="text-[9px] font-mono text-rose-400 hover:text-rose-300 hover:underline animate-pulse"
+                >
+                  Limpiar texto
+                </button>
+              </div>
+              <textarea
+                value={complementaryText}
+                onChange={(e) => setComplementaryText(e.target.value)}
+                placeholder="Pega aquí el texto adicional, resolución, borrador o artículo que deseas analizar y contrastar con el manual activo..."
+                className="w-full h-24 p-2 rounded-lg bg-rafamDark-900 border border-white/10 text-xs text-slate-200 focus:outline-none focus:border-neonPurple/50 custom-scrollbar resize-none font-mono"
+              />
+              <span className="text-[8px] font-mono text-slate-500 self-end">
+                {complementaryText.length} caracteres
+              </span>
             </div>
           )}
 

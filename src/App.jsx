@@ -102,7 +102,12 @@ export default function App() {
   };
 
   const handleQuickAsk = (queryText) => {
-    setTriggerQueryText(queryText);
+    const confirmacion = window.confirm(`¿Desea realizar la siguiente consulta sugerida?\n\n"${queryText}"`);
+    if (confirmacion) {
+      setTriggerQueryText(queryText);
+      return true;
+    }
+    return false;
   };
 
   const clearTriggerQuery = () => {
@@ -155,8 +160,10 @@ export default function App() {
                       activeNode={activeNode} 
                       activeModule={activeModule}
                       onQuickAsk={(queryText) => {
-                        handleQuickAsk(queryText);
-                        setMobileTab('chat');
+                        const confirmed = handleQuickAsk(queryText);
+                        if (confirmed) {
+                          setMobileTab('chat');
+                        }
                       }}
                       customSuggestions={customSuggestions}
                       onResetSuggestions={() => setCustomSuggestions([])}
@@ -176,8 +183,10 @@ export default function App() {
                     activeModule={activeModule}
                     onModuleChange={handleModuleChange}
                     onQuickAsk={(queryText) => {
-                      handleQuickAsk(queryText);
-                      setMobileTab('chat');
+                      const confirmed = handleQuickAsk(queryText);
+                      if (confirmed) {
+                        setMobileTab('chat');
+                      }
                     }}
                     customSuggestions={customSuggestions}
                     onResetSuggestions={() => setCustomSuggestions([])}
