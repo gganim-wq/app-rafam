@@ -27,7 +27,9 @@ export default function Sidebar({
   setCollapsed,
   activeModule = 'estructura_rafam',
   onModuleChange,
-  onQuickAsk
+  onQuickAsk,
+  customSuggestions = [],
+  onResetSuggestions
 }) {
   const [activeTab, setActiveTab] = useState('gastos'); // 'gastos', 'objeto', 'recursos'
   const [searchTerm, setSearchTerm] = useState('');
@@ -414,15 +416,25 @@ export default function Sidebar({
 
               {/* Sección de Consultas Rápidas (sólo visible en móvil) */}
               {activeModule !== 'estructura_rafam' && (
-                <div className="w-full mt-6 space-y-3 text-left md:hidden">
-                  <div className="flex items-center gap-1.5 px-1">
-                    <Sparkles className="w-3.5 h-3.5 text-neonBlue animate-pulse" />
-                    <h3 className="text-[10px] font-bold text-white uppercase tracking-widest font-mono">
-                      Consultas sugeridas
-                    </h3>
+                <div className="w-full mt-6 space-y-3 text-left md:hidden animate-fadeIn">
+                  <div className="flex items-center justify-between px-1">
+                    <div className="flex items-center gap-1.5">
+                      <Sparkles className="w-3.5 h-3.5 text-neonBlue animate-pulse" />
+                      <h3 className="text-[10px] font-bold text-white uppercase tracking-widest font-mono">
+                        {customSuggestions && customSuggestions.length > 0 ? "Seguimiento" : "Sugeridas"}
+                      </h3>
+                    </div>
+                    {customSuggestions && customSuggestions.length > 0 && (
+                      <button
+                        onClick={() => onResetSuggestions && onResetSuggestions()}
+                        className="text-[8px] font-mono text-neonBlue bg-neonBlue/5 border border-neonBlue/25 px-1.5 py-0.5 rounded cursor-pointer"
+                      >
+                        Reset
+                      </button>
+                    )}
                   </div>
                   <div className="flex flex-col gap-2.5">
-                    {getModuleById(activeModule).preguntasRapidas.slice(0, 3).map((q, idx) => (
+                    {(customSuggestions && customSuggestions.length > 0 ? customSuggestions : getModuleById(activeModule).preguntasRapidas.slice(0, 3)).map((q, idx) => (
                       <button
                         key={idx}
                         onClick={() => onQuickAsk && onQuickAsk(q)}

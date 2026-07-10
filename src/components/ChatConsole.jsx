@@ -24,7 +24,9 @@ export default function ChatConsole({
   forceFullscreen = false,
   messages,
   setMessages,
-  activeModule = 'estructura_rafam'
+  activeModule = 'estructura_rafam',
+  customSuggestions = [],
+  setCustomSuggestions
 }) {
   const [isOpen, setIsOpen] = useState(forceFullscreen);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -39,12 +41,10 @@ export default function ChatConsole({
   const [loading, setLoading] = useState(false);
   const [model, setModel] = useState('gemini-2.5-flash');
   const [suggestionOffset, setSuggestionOffset] = useState(0);
-  const [customSuggestions, setCustomSuggestions] = useState([]);
 
   useEffect(() => {
     setSuggestionOffset(0);
-    setCustomSuggestions([]);
-  }, [activeModule]);
+  }, [activeModule, customSuggestions]);
 
   const handleCycleSuggestions = () => {
     if (customSuggestions.length > 0) {

@@ -18,9 +18,11 @@ export default function App() {
   const [mobileTab, setMobileTab] = useState('explorador');
   const [tempUrl, setTempUrl] = useState(getBackendUrl());
   const [activeModule, setActiveModule] = useState('estructura_rafam');
+  const [customSuggestions, setCustomSuggestions] = useState([]);
 
   const handleModuleChange = (moduleId) => {
     setActiveModule(moduleId);
+    setCustomSuggestions([]); // Limpiar sugerencias al cambiar de módulo
     if (moduleId !== 'estructura_rafam') {
       setActiveNode(null);
     }
@@ -156,6 +158,8 @@ export default function App() {
                         handleQuickAsk(queryText);
                         setMobileTab('chat');
                       }}
+                      customSuggestions={customSuggestions}
+                      onResetSuggestions={() => setCustomSuggestions([])}
                     />
                   </div>
                 </div>
@@ -175,6 +179,8 @@ export default function App() {
                       handleQuickAsk(queryText);
                       setMobileTab('chat');
                     }}
+                    customSuggestions={customSuggestions}
+                    onResetSuggestions={() => setCustomSuggestions([])}
                   />
                 </div>
               )}
@@ -192,6 +198,8 @@ export default function App() {
                 messages={chatMessages}
                 setMessages={setChatMessages}
                 activeModule={activeModule}
+                customSuggestions={customSuggestions}
+                setCustomSuggestions={setCustomSuggestions}
               />
             </div>
           )}
@@ -299,6 +307,8 @@ export default function App() {
           activeModule={activeModule}
           onModuleChange={handleModuleChange}
           onQuickAsk={handleQuickAsk}
+          customSuggestions={customSuggestions}
+          onResetSuggestions={() => setCustomSuggestions([])}
         />
 
         {/* Dashboard y Consola a la derecha */}
@@ -339,6 +349,8 @@ export default function App() {
                   activeNode={activeNode} 
                   activeModule={activeModule}
                   onQuickAsk={handleQuickAsk}
+                  customSuggestions={customSuggestions}
+                  onResetSuggestions={() => setCustomSuggestions([])}
                 />
                 <button
                   onClick={() => setDashboardCollapsed(true)}
@@ -360,6 +372,8 @@ export default function App() {
             messages={chatMessages}
             setMessages={setChatMessages}
             activeModule={activeModule}
+            customSuggestions={customSuggestions}
+            setCustomSuggestions={setCustomSuggestions}
           />
         </div>
       </div>

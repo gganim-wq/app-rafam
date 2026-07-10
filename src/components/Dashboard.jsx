@@ -17,7 +17,13 @@ import {
 } from 'lucide-react';
 import { getModuleById } from '../utils/modules';
 
-export default function Dashboard({ activeNode, activeModule = 'estructura_rafam', onQuickAsk }) {
+export default function Dashboard({ 
+  activeNode, 
+  activeModule = 'estructura_rafam', 
+  onQuickAsk,
+  customSuggestions = [],
+  onResetSuggestions
+}) {
   const [loading, setLoading] = useState(false);
   const [details, setDetails] = useState(null);
   const [error, setError] = useState(null);
@@ -88,18 +94,34 @@ export default function Dashboard({ activeNode, activeModule = 'estructura_rafam
 
           {/* Sección de Consultas Rápidas */}
           <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-neonBlue animate-pulse" />
-              <h3 className="text-xs font-bold text-white uppercase tracking-widest font-mono">
-                Consultas sugeridas sobre este documento
-              </h3>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-neonBlue animate-pulse" />
+                <h3 className="text-xs font-bold text-white uppercase tracking-widest font-mono">
+                  {customSuggestions && customSuggestions.length > 0 
+                    ? "Consultas sugeridas de seguimiento" 
+                    : "Consultas sugeridas sobre este documento"
+                  }
+                </h3>
+              </div>
+              {customSuggestions && customSuggestions.length > 0 && (
+                <button
+                  onClick={() => onResetSuggestions && onResetSuggestions()}
+                  className="text-[10px] font-mono text-neonBlue hover:underline bg-neonBlue/5 border border-neonBlue/20 px-2 py-0.5 rounded cursor-pointer transition-all hover:bg-neonBlue/10"
+                >
+                  Restablecer consultas originales
+                </button>
+              )}
             </div>
             <p className="text-xs text-slate-400 font-sans">
-              Haz clic en cualquiera de las siguientes preguntas frecuentes para iniciar un análisis profundo en el Auditor RAG basándote exclusivamente en este manual:
+              {customSuggestions && customSuggestions.length > 0
+                ? "Estas preguntas de seguimiento fueron generadas en base a tu consulta anterior para profundizar en el tema:"
+                : "Haz clic en cualquiera de las siguientes preguntas frecuentes para iniciar un análisis profundo en el Auditor RAG basándote exclusivamente en este manual:"
+              }
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {currentModule.preguntasRapidas.map((q, idx) => (
+              {(customSuggestions && customSuggestions.length > 0 ? customSuggestions : currentModule.preguntasRapidas).map((q, idx) => (
                 <button
                   key={idx}
                   onClick={() => onQuickAsk(q)}
