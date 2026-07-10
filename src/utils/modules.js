@@ -38,7 +38,7 @@ export const modulesList = [
     icon: FileText,
     descripcion: 'Ordenanza Fiscal e Impositiva de la Municipalidad de Chascomús. Establece los derechos, tasas, alícuotas, contribuciones de mejoras y el régimen tributario municipal vigente.',
     preguntasRapidas: [
-      '¿Cuáles son las alícuotas vigentes para la Tasa por Servicios Urbanos?',
+      '¿Cuáles son las categorías y módulos de la Tasa por Servicios Generales?',
       '¿Qué exenciones impositivas se contemplan para jubilados o personas con discapacidad?',
       '¿Cómo se calculan las multas y recargos por mora en el pago de tasas municipales?',
       '¿Cuál es la base imponible y alícuota de la Tasa por Inspección de Seguridad e Higiene?',
