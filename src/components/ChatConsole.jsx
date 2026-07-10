@@ -39,15 +39,26 @@ export default function ChatConsole({
   const [loading, setLoading] = useState(false);
   const [model, setModel] = useState('gemini-2.5-flash');
   const [suggestionOffset, setSuggestionOffset] = useState(0);
+  const [customSuggestions, setCustomSuggestions] = useState([]);
 
   useEffect(() => {
     setSuggestionOffset(0);
+    setCustomSuggestions([]);
   }, [activeModule]);
 
   const handleCycleSuggestions = () => {
-    const total = getModuleById(activeModule).preguntasRapidas.length;
-    setSuggestionOffset(prev => (prev + 3) % total);
+    if (customSuggestions.length > 0) {
+      setCustomSuggestions([]);
+      setSuggestionOffset(0);
+    } else {
+      const total = getModuleById(activeModule).preguntasRapidas.length;
+      setSuggestionOffset(prev => (prev + 3) % total);
+    }
   };
+
+  const currentSuggestions = customSuggestions.length > 0 
+    ? customSuggestions 
+    : getModuleById(activeModule).preguntasRapidas;
 
   const chatEndRef = useRef(null);
 
@@ -109,6 +120,7 @@ export default function ChatConsole({
         query: apiQuery,
         length: currentLength,
         model: model,
+        active_module: activeModule,
         nodo_contexto: activeNode ? {
           tipo: activeNode.tipo,
           codigo: activeNode.codigo,
@@ -131,6 +143,12 @@ export default function ChatConsole({
       }
 
       const data = await response.json();
+
+      if (data.sugeridas && data.sugeridas.length > 0) {
+        setCustomSuggestions(data.sugeridas);
+      } else {
+        setCustomSuggestions([]);
+      }
 
       setMessages(prev => [...prev, {
         sender: 'rag',
@@ -502,7 +520,7 @@ export default function ChatConsole({
                 <Sparkles className="w-3 h-3 text-neonBlue animate-pulse" /> Sugeridas:
               </span>
               <div className="flex items-center gap-2 overflow-x-auto flex-grow no-scrollbar">
-                {getModuleById(activeModule).preguntasRapidas.slice(suggestionOffset, suggestionOffset + 3).map((q, idx) => (
+                {currentSuggestions.slice(suggestionOffset, suggestionOffset + 3).map((q, idx) => (
                   <button
                     key={idx}
                     type="button"

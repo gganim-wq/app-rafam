@@ -20,7 +20,9 @@ from asistente_rafam import (
     traducir_consulta_contable,
     obtener_detalles_nodo,
     generar_prompt_enriquecido,
-    DB_PATH
+    DB_PATH,
+    obtener_cliente_gemini,
+    MODELO_SELECCIONADO
 )
 
 app = FastAPI(title="RAG RAFAM Backend API", version="1.0.0")
@@ -46,6 +48,7 @@ class QueryRequest(BaseModel):
     query: str
     length: Optional[str] = "reducida"
     model: Optional[str] = "gemini-2.5-flash"
+    active_module: Optional[str] = "estructura_rafam"
     nodo_contexto: Optional[Dict[str, Any]] = None  # Contiene tipo, codigo, prog_cod, jur_cod
 
 class RouteRequest(BaseModel):
@@ -225,13 +228,40 @@ def post_query(request: QueryRequest):
         
         datos_respuesta = res.json()
         
+        # Generar sugerencias de preguntas de seguimiento de forma inteligente usando Gemini 2.5 Flash
+        sugeridas = []
+        is_system_command = query_original.lower().find('ragchas') >= 0
+        if request.active_module != 'estructura_rafam' and not is_system_command:
+            client_gemini = obtener_cliente_gemini()
+            if client_gemini:
+                try:
+                    prompt_sugerencias = f"""
+                    Basándote en la siguiente pregunta del usuario y la respuesta provista por el Auditor RAG, genera exactamente 3 preguntas cortas de seguimiento (follow-up questions) en castellano que el usuario podría querer hacer a continuación.
+                    Mantén las preguntas cortas (máximo 12 palabras cada una), enfocadas y relevantes para profundizar en el mismo tema o en aspectos directamente relacionados de la normativa o presupuesto.
+                    Devuelve únicamente un objeto JSON con la estructura: {{"preguntas": ["pregunta 1", "pregunta 2", "pregunta 3"]}}. No agregues explicaciones ni markdown.
+
+                    Pregunta del usuario: {query_original}
+                    Respuesta del RAG: {datos_respuesta.get("respuesta", "")}
+                    """
+                    
+                    resp_sugerencias = client_gemini.models.generate_content(
+                        model=MODELO_SELECCIONADO,
+                        contents=prompt_sugerencias,
+                        config={"response_mime_type": "application/json"}
+                    )
+                    res_json = json.loads(resp_sugerencias.text.strip())
+                    sugeridas = res_json.get("preguntas", [])
+                except Exception as e:
+                    print(f"⚠️ Error al generar preguntas sugeridas con Gemini: {e}", file=sys.stderr)
+        
         # Devolver respuesta e incluir los metadatos de enrutamiento para que el Front-end
         # pueda graficar o actualizar el árbol contable según lo que respondió el bot
         return {
             "respuesta": datos_respuesta.get("respuesta", "Sin respuesta"),
             "grafico": datos_respuesta.get("grafico", ""),
             "enrutamiento": enrutamiento,
-            "prompt_enriquecido": prompt_enriquecido
+            "prompt_enriquecido": prompt_enriquecido,
+            "sugeridas": sugeridas
         }
     except requests.exceptions.RequestException as e:
         raise HTTPException(
