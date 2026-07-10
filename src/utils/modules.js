@@ -14,30 +14,6 @@ export const modulesList = [
     ]
   },
   {
-    id: 'manual_rafam',
-    nombre: 'RAFAM (Manual)',
-    notebookId: '1f69402a-dc80-4075-9815-325b3e538d30',
-    icon: BookOpen,
-    descripcion: 'Manual de Administración Financiera Municipal (RAFAM) de la Provincia de Buenos Aires. Regula los sistemas contables, de tesorería, crédito público, presupuesto y control interno de los municipios bonaerenses.',
-    preguntasRapidas: [
-      '¿Cuáles son las etapas formales del gasto público según el manual RAFAM?',
-      '¿Qué función cumple el Clasificador por Objeto del Gasto y cómo se estructura?',
-      '¿Cómo se define el momento del devengamiento de un recurso?'
-    ]
-  },
-  {
-    id: 'lom',
-    nombre: 'LOM',
-    notebookId: '88b5b0ff-92d5-4119-b813-c1b0d128d48d',
-    icon: Scale,
-    descripcion: 'Ley Orgánica de las Municipalidades de la Provincia de Buenos Aires (Decreto-Ley 6769/58). Define el marco institucional, las atribuciones del Concejo Deliberante, el Departamento Ejecutivo, la contabilidad municipal y las sanciones.',
-    preguntasRapidas: [
-      '¿Cuáles son las atribuciones y deberes del Concejo Deliberante según la LOM?',
-      '¿Cómo se compone y organiza el Departamento Ejecutivo municipal?',
-      '¿Cuáles son los requisitos y prohibiciones para ser concejal en la Provincia?'
-    ]
-  },
-  {
     id: 'presupuesto_municipal',
     nombre: 'Presupuesto',
     notebookId: '1a068746-39ad-4129-b200-8df696c49e2e',
@@ -83,6 +59,30 @@ export const modulesList = [
       '¿Cuál es el stock de deuda flotante consolidado al cierre del último trimestre?',
       '¿Cómo evolucionaron los pasivos exigibles con proveedores en el período?',
       '¿Qué porcentaje representa la deuda pública sobre los recursos corrientes?'
+    ]
+  },
+  {
+    id: 'manual_rafam',
+    nombre: 'RAFAM (Manual)',
+    notebookId: '1f69402a-dc80-4075-9815-325b3e538d30',
+    icon: BookOpen,
+    descripcion: 'Manual de Administración Financiera Municipal (RAFAM) de la Provincia de Buenos Aires. Regula los sistemas contables, de tesorería, crédito público, presupuesto y control interno de los municipios bonaerenses.',
+    preguntasRapidas: [
+      '¿Cuáles son las etapas formales del gasto público según el manual RAFAM?',
+      '¿Qué función cumple el Clasificador por Objeto del Gasto y cómo se estructura?',
+      '¿Cómo se define el momento del devengamiento de un recurso?'
+    ]
+  },
+  {
+    id: 'lom',
+    nombre: 'LOM',
+    notebookId: '88b5b0ff-92d5-4119-b813-c1b0d128d48d',
+    icon: Scale,
+    descripcion: 'Ley Orgánica de las Municipalidades de la Provincia de Buenos Aires (Decreto-Ley 6769/58). Define el marco institucional, las atribuciones del Concejo Deliberante, el Departamento Ejecutivo, la contabilidad municipal y las sanciones.',
+    preguntasRapidas: [
+      '¿Cuáles son las atribuciones y deberes del Concejo Deliberante según la LOM?',
+      '¿Cómo se compone y organiza el Departamento Ejecutivo municipal?',
+      '¿Cuáles son los requisitos y prohibiciones para ser concejal en la Provincia?'
     ]
   }
 ];
