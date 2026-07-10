@@ -138,9 +138,9 @@ export default function Dashboard({ activeNode, activeModule = 'estructura_rafam
               <Compass className="w-10 h-10 animate-spin-slow" />
             </div>
             <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-              Explorador de Presupuesto
+              Explorador - Estructura RAFAM
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-neonBlue to-neonPurple">
-                RAG RAFAM 2026
+                RAG Chascomús 2026
               </span>
             </h1>
             <p className="text-slate-400 text-sm max-w-lg mx-auto font-sans leading-relaxed">
@@ -357,7 +357,7 @@ export default function Dashboard({ activeNode, activeModule = 'estructura_rafam
       {/* Breadcrumbs y Cabecera del Nodo */}
       <div className="px-6 py-3.5 border-b border-white/5 bg-rafamDark-900/30">
         <div className="flex items-center gap-1.5 text-[9px] font-mono text-slate-500 uppercase tracking-widest mb-1.5 overflow-x-auto whitespace-nowrap custom-scrollbar">
-          <span className="text-slate-400">RAG CHAS 2026 - Agente de IA de Chascomus - Modulo RAG FAM</span>
+          <span className="text-slate-400">RAG Chascomús 2026 - Auditoría Inteligente</span>
           {details?.camino?.map((crumb, idx) => (
             <React.Fragment key={idx}>
               <span className="text-slate-600">/</span>

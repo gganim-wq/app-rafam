@@ -5,6 +5,7 @@ import Dashboard from './components/Dashboard';
 import ChatConsole from './components/ChatConsole';
 import { ChevronUp, ChevronDown, Compass, MessageSquare, Settings, ArrowLeft, Cpu, Save } from 'lucide-react';
 import { getBackendUrl, setBackendUrl } from './utils/config';
+import { getModuleById } from './utils/modules';
 
 export default function App() {
   const [estructura, setEstructura] = useState(null);
@@ -308,7 +309,7 @@ export default function App() {
               >
                 <div className="flex items-center gap-2">
                   <Compass className="w-4 h-4 text-neonBlue animate-pulse" />
-                  <span>EXPLORADOR DE PRESUPUESTO (MINIMIZADO)</span>
+                  <span>Explorador - {getModuleById(activeModule).nombre} (Minimizado)</span>
                   {activeNode && (
                     <span className="hidden sm:inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-neonBlue/15 text-neonBlue border border-neonBlue/20 text-[10px] ml-2">
                       Contexto: {activeNode.nombre} ({activeNode.codigo})

@@ -49,7 +49,7 @@ export default function Navbar({ onSync }) {
         </div>
         <div>
           <span className="text-xl font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-neonBlue">
-            RAG RAFAM
+            RAG Chascomús
           </span>
           <span className="ml-2 px-2 py-0.5 text-[10px] uppercase font-mono tracking-widest bg-neonPurple/20 text-neonPurple border border-neonPurple/30 rounded-md">
             v2.5.Flash

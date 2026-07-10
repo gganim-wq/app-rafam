@@ -34,7 +34,7 @@ export default function ChatConsole({
       setIsOpen(true);
     }
   }, [forceFullscreen]);
-  const [lengthSetting, setLengthSetting] = useState('extendida'); // 'reducida' | 'extendida'
+  const [lengthSetting, setLengthSetting] = useState('reducida'); // 'reducida' | 'extendida'
   const [inputText, setInputText] = useState('');
   const [loading, setLoading] = useState(false);
   const [model, setModel] = useState('gemini-2.5-flash');
@@ -262,7 +262,7 @@ export default function ChatConsole({
       >
         <div className="flex items-center gap-2 text-xs font-mono font-bold tracking-wider text-slate-300">
           <Terminal className={`w-4 h-4 text-neonBlue ${loading ? 'animate-pulse' : ''}`} />
-          <span>CONSOLA INTELIGENTE DE AUDITORÍA RAG RAFAM</span>
+          <span>Consola Inteligente - {getModuleById(activeModule).nombre}</span>
           {activeNode && (
             <span className="hidden md:inline-flex items-center gap-1 px-2 py-0.5 rounded bg-neonBlue/15 text-neonBlue border border-neonBlue/20 text-[10px]">
               Contexto: {activeNode.nombre} ({activeNode.codigo})
