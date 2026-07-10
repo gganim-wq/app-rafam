@@ -24,6 +24,34 @@ export default function Dashboard({ activeNode, activeModule = 'estructura_rafam
   const [activeTab, setActiveTab] = useState('finanzas'); // 'finanzas', 'metas', 'personal', 'inversiones'
   const [showRightBar, setShowRightBar] = useState(true);
 
+  useEffect(() => {
+    if (!activeNode) return;
+
+    const fetchDetails = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        let url = `${getBackendUrl()}/api/detalles?tipo=${activeNode.tipo}&codigo=${activeNode.codigo}`;
+        if (activeNode.prog_cod) url += `&prog_cod=${activeNode.prog_cod}`;
+        if (activeNode.jur_cod) url += `&jur_cod=${activeNode.jur_cod}`;
+
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error('No se pudieron obtener los detalles del nodo.');
+        }
+        const data = await response.json();
+        setDetails(data);
+      } catch (err) {
+        console.error('Error fetching details:', err);
+        setError('Error al conectar con la API de detalles. Asegúrate de que el backend esté corriendo en el puerto 8000.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDetails();
+  }, [activeNode]);
+
   // Si el módulo activo es documental, renderizamos su ficha en lugar del explorador de árbol
   if (activeModule !== 'estructura_rafam') {
     const currentModule = getModuleById(activeModule);
@@ -98,34 +126,6 @@ export default function Dashboard({ activeNode, activeModule = 'estructura_rafam
       </div>
     );
   }
-
-  useEffect(() => {
-    if (!activeNode) return;
-
-    const fetchDetails = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        let url = `${getBackendUrl()}/api/detalles?tipo=${activeNode.tipo}&codigo=${activeNode.codigo}`;
-        if (activeNode.prog_cod) url += `&prog_cod=${activeNode.prog_cod}`;
-        if (activeNode.jur_cod) url += `&jur_cod=${activeNode.jur_cod}`;
-
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error('No se pudieron obtener los detalles del nodo.');
-        }
-        const data = await response.json();
-        setDetails(data);
-      } catch (err) {
-        console.error('Error fetching details:', err);
-        setError('Error al conectar con la API de detalles. Asegúrate de que el backend esté corriendo en el puerto 8000.');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchDetails();
-  }, [activeNode]);
 
   // Si no hay nodo activo, renderizar el Welcome Screen
   if (!activeNode) {

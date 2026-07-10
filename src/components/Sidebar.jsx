@@ -12,7 +12,8 @@ import {
   TrendingDown,
   TrendingUp,
   Tag,
-  BookOpen
+  BookOpen,
+  Landmark
 } from 'lucide-react';
 import { modulesList, getModuleById } from '../utils/modules';
 
