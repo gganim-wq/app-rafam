@@ -14,6 +14,7 @@ import {
   CornerDownRight,
   Brain
 } from 'lucide-react';
+import { getModuleById } from '../utils/modules';
 
 export default function ChatConsole({ 
   activeNode, 
@@ -22,7 +23,8 @@ export default function ChatConsole({
   dashboardCollapsed, 
   forceFullscreen = false,
   messages,
-  setMessages
+  setMessages,
+  activeModule = 'estructura_rafam'
 }) {
   const [isOpen, setIsOpen] = useState(forceFullscreen);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -84,8 +86,16 @@ export default function ChatConsole({
     setLoading(true);
 
     try {
+      let apiQuery = query;
+      if (activeModule !== 'estructura_rafam') {
+        const currentModule = getModuleById(activeModule);
+        if (currentModule && currentModule.notebookId) {
+          apiQuery = `${query}\n\n[DIRECTIVA DE CONTROL CONTABLE RAG RAFAM]\nResponde única y exclusivamente basándote en el documento seleccionado. Si la respuesta no figura de forma explícita en él, di textualmente: "No se encontró información sobre este tema en el documento seleccionado". Bajo ninguna circunstancia uses conocimientos externos ni supongas datos.\n[FORCED_NOTEBOOK: ${currentModule.notebookId}]`;
+        }
+      }
+
       const payload = {
-        query: query,
+        query: apiQuery,
         length: currentLength,
         model: model,
         nodo_contexto: activeNode ? {

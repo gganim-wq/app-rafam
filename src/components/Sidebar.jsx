@@ -11,8 +11,10 @@ import {
   Network,
   TrendingDown,
   TrendingUp,
-  Tag
+  Tag,
+  BookOpen
 } from 'lucide-react';
+import { modulesList, getModuleById } from '../utils/modules';
 
 export default function Sidebar({ 
   estructura, 
@@ -20,7 +22,9 @@ export default function Sidebar({
   onSelectNode, 
   activeNode, 
   collapsed, 
-  setCollapsed 
+  setCollapsed,
+  activeModule = 'estructura_rafam',
+  onModuleChange
 }) {
   const [activeTab, setActiveTab] = useState('gastos'); // 'gastos', 'objeto', 'recursos'
   const [searchTerm, setSearchTerm] = useState('');
@@ -125,245 +129,287 @@ export default function Sidebar({
         </div>
       ) : (
         <>
-          {/* Header del Sidebar */}
-          <div className="p-4 border-b border-white/5">
-            {/* Buscador */}
-            <div className="relative mb-4">
-              <Search className="absolute left-3 top-2.5 w-4 h-4 text-slate-400" />
-              <input
-                type="text"
-                placeholder="Buscar código o nombre..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-9 pr-4 py-2 bg-rafamDark-900 border border-white/10 rounded-lg text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-neonBlue/50 focus:ring-1 focus:ring-neonBlue/30 transition-all font-mono"
-              />
-            </div>
-
-            {/* Pestañas de categoría */}
-            <div className="flex bg-rafamDark-900 p-1 rounded-lg border border-white/5">
-              <button
-                onClick={() => setActiveTab('gastos')}
-                className={`flex-1 py-1.5 text-xs font-semibold rounded-md transition-all flex items-center justify-center gap-1.5 ${
-                  activeTab === 'gastos'
-                    ? 'bg-gradient-to-r from-neonBlue/15 to-neonPurple/15 text-neonBlue border border-neonBlue/20 shadow-sm'
-                    : 'text-slate-400 hover:text-slate-200'
-                }`}
-              >
-                <Network className="w-3.5 h-3.5" />
-                <span>Gastos</span>
-              </button>
-              <button
-                onClick={() => setActiveTab('objeto')}
-                className={`flex-1 py-1.5 text-xs font-semibold rounded-md transition-all flex items-center justify-center gap-1.5 ${
-                  activeTab === 'objeto'
-                    ? 'bg-gradient-to-r from-neonBlue/15 to-neonPurple/15 text-neonBlue border border-neonBlue/20 shadow-sm'
-                    : 'text-slate-400 hover:text-slate-200'
-                }`}
-              >
-                <TrendingDown className="w-3.5 h-3.5" />
-                <span>Objeto</span>
-              </button>
-              <button
-                onClick={() => setActiveTab('recursos')}
-                className={`flex-1 py-1.5 text-xs font-semibold rounded-md transition-all flex items-center justify-center gap-1.5 ${
-                  activeTab === 'recursos'
-                    ? 'bg-gradient-to-r from-neonBlue/15 to-neonPurple/15 text-neonBlue border border-neonBlue/20 shadow-sm'
-                    : 'text-slate-400 hover:text-slate-200'
-                }`}
-              >
-                <TrendingUp className="w-3.5 h-3.5" />
-                <span>Recursos</span>
-              </button>
-            </div>
+          {/* Selector de Módulo RAG */}
+          <div className="p-4 border-b border-white/5 bg-rafamDark-950/20">
+            <label className="text-[10px] text-slate-400 uppercase tracking-wider font-mono font-bold mb-2 flex items-center gap-1.5 select-none">
+              <Layers className="w-3.5 h-3.5 text-neonPurple" />
+              <span>Módulo RAG Activo</span>
+            </label>
+            <select
+              value={activeModule}
+              onChange={(e) => onModuleChange(e.target.value)}
+              className="w-full px-3 py-2.5 bg-rafamDark-900 border border-white/10 rounded-lg text-xs font-semibold text-slate-200 focus:outline-none focus:border-neonBlue/50 transition-all cursor-pointer font-sans"
+            >
+              {modulesList.map((m) => (
+                <option key={m.id} value={m.id} className="bg-rafamDark-900 text-slate-200">
+                  {m.nombre}
+                </option>
+              ))}
+            </select>
           </div>
 
-          {/* Lista del Árbol (Scrollable) */}
-          <div className="flex-1 overflow-y-auto px-2 py-4 custom-scrollbar select-none">
-            {loading ? (
-              <div className="flex flex-col items-center justify-center py-10 gap-3 text-slate-500">
-                <div className="w-8 h-8 rounded-full border-2 border-neonBlue border-t-transparent animate-spin"></div>
-                <span className="text-xs font-mono">Cargando catálogo contable...</span>
+          {activeModule === 'estructura_rafam' ? (
+            <>
+              {/* Header del Sidebar (Buscador y Tabs) */}
+              <div className="p-4 border-b border-white/5">
+                {/* Buscador */}
+                <div className="relative mb-4">
+                  <Search className="absolute left-3 top-2.5 w-4 h-4 text-slate-400" />
+                  <input
+                    type="text"
+                    placeholder="Buscar código o nombre..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="w-full pl-9 pr-4 py-2 bg-rafamDark-900 border border-white/10 rounded-lg text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-neonBlue/50 focus:ring-1 focus:ring-neonBlue/30 transition-all font-mono"
+                  />
+                </div>
+
+                {/* Pestañas de categoría */}
+                <div className="flex bg-rafamDark-900 p-1 rounded-lg border border-white/5">
+                  <button
+                    onClick={() => setActiveTab('gastos')}
+                    className={`flex-1 py-1.5 text-xs font-semibold rounded-md transition-all flex items-center justify-center gap-1.5 ${
+                      activeTab === 'gastos'
+                        ? 'bg-gradient-to-r from-neonBlue/15 to-neonPurple/15 text-neonBlue border border-neonBlue/20 shadow-sm'
+                        : 'text-slate-400 hover:text-slate-200'
+                    }`}
+                  >
+                    <Network className="w-3.5 h-3.5" />
+                    <span>Gastos</span>
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('objeto')}
+                    className={`flex-1 py-1.5 text-xs font-semibold rounded-md transition-all flex items-center justify-center gap-1.5 ${
+                      activeTab === 'objeto'
+                        ? 'bg-gradient-to-r from-neonBlue/15 to-neonPurple/15 text-neonBlue border border-neonBlue/20 shadow-sm'
+                        : 'text-slate-400 hover:text-slate-200'
+                    }`}
+                  >
+                    <TrendingDown className="w-3.5 h-3.5" />
+                    <span>Objeto</span>
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('recursos')}
+                    className={`flex-1 py-1.5 text-xs font-semibold rounded-md transition-all flex items-center justify-center gap-1.5 ${
+                      activeTab === 'recursos'
+                        ? 'bg-gradient-to-r from-neonBlue/15 to-neonPurple/15 text-neonBlue border border-neonBlue/20 shadow-sm'
+                        : 'text-slate-400 hover:text-slate-200'
+                    }`}
+                  >
+                    <TrendingUp className="w-3.5 h-3.5" />
+                    <span>Recursos</span>
+                  </button>
+                </div>
               </div>
-            ) : (
-              <>
-                {/* PESTAÑA: ESTRUCTURA DE GASTOS */}
-                {activeTab === 'gastos' && (
-                  <div className="space-y-1 font-mono text-xs">
-                    {jurisdiccionesTree.length === 0 ? (
-                      <div className="text-center py-6 text-slate-500">No se encontraron resultados</div>
-                    ) : (
-                      jurisdiccionesTree.map((j) => {
-                        const jKey = `j_${j.codigo}`;
-                        const isExpanded = expandedNodes[jKey] || searchTerm;
-                        const isActive = isNodeActive(j.codigo, 'jurisdiccion');
 
-                        return (
-                          <div key={j.codigo} className="space-y-0.5">
-                            {/* Fila Jurisdicción */}
-                            <div
-                              onClick={() => handleNodeClick(j, 'jurisdiccion')}
-                              className={`flex items-center gap-2 px-2 py-1.5 rounded-lg cursor-pointer transition-all ${
-                                isActive
-                                  ? 'bg-neonBlue/10 border border-neonBlue/30 text-neonBlue shadow-[0_0_10px_rgba(0,240,255,0.05)]'
-                                  : 'hover:bg-white/5 text-slate-300'
-                              }`}
-                            >
-                              <button
-                                onClick={(e) => toggleExpand(jKey, e)}
-                                className="p-0.5 hover:bg-white/10 rounded text-slate-400 hover:text-white"
-                              >
-                                {isExpanded ? <ChevronDown className="w-3.5 h-3.5" /> : <ChevronRight className="w-3.5 h-3.5" />}
-                              </button>
-                              <FolderOpen className="w-4 h-4 text-amber-400 shrink-0" />
-                              <div className="truncate flex-1">
-                                <span className="text-[10px] text-slate-500 mr-1.5 font-bold">[{j.codigo}]</span>
-                                <span className="font-sans font-medium">{j.nombre}</span>
-                              </div>
-                            </div>
+              {/* Lista del Árbol (Scrollable) */}
+              <div className="flex-1 overflow-y-auto px-2 py-4 custom-scrollbar select-none">
+                {loading ? (
+                  <div className="flex flex-col items-center justify-center py-10 gap-3 text-slate-500">
+                    <div className="w-8 h-8 rounded-full border-2 border-neonBlue border-t-transparent animate-spin"></div>
+                    <span className="text-xs font-mono">Cargando catálogo contable...</span>
+                  </div>
+                ) : (
+                  <>
+                    {/* PESTAÑA: ESTRUCTURA DE GASTOS */}
+                    {activeTab === 'gastos' && (
+                      <div className="space-y-1 font-mono text-xs">
+                        {jurisdiccionesTree.length === 0 ? (
+                          <div className="text-center py-6 text-slate-500">No se encontraron resultados</div>
+                        ) : (
+                          jurisdiccionesTree.map((j) => {
+                            const jKey = `j_${j.codigo}`;
+                            const isExpanded = expandedNodes[jKey] || searchTerm;
+                            const isActive = isNodeActive(j.codigo, 'jurisdiccion');
 
-                            {/* Programas de la Jurisdicción */}
-                            {isExpanded && (
-                              <div className="pl-4 ml-3 border-l border-white/5 space-y-0.5">
-                                {(j.programas || []).map((p) => {
-                                  const pKey = `p_${j.codigo}_${p.codigo}`;
-                                  const isPExpanded = expandedNodes[pKey] || searchTerm;
-                                  const isPActive = isNodeActive(p.codigo, 'programa') && activeNode?.jur_cod === j.codigo;
+                            return (
+                              <div key={j.codigo} className="space-y-0.5">
+                                <div
+                                  onClick={() => handleNodeClick(j, 'jurisdiccion')}
+                                  className={`flex items-center justify-between px-2 py-2 rounded-lg cursor-pointer transition-all ${
+                                    isActive
+                                      ? 'bg-neonBlue/10 border border-neonBlue/30 text-neonBlue'
+                                      : 'hover:bg-white/5 text-slate-300'
+                                  }`}
+                                >
+                                  <div className="flex items-center gap-2 truncate">
+                                    <Landmark className="w-3.5 h-3.5 shrink-0 text-neonBlue" />
+                                    <span className="truncate">{j.nombre}</span>
+                                  </div>
+                                  {j.programas && j.programas.length > 0 && (
+                                    <button
+                                      onClick={(e) => toggleExpand(jKey, e)}
+                                      className="p-1 hover:bg-white/10 rounded transition-colors"
+                                    >
+                                      {isExpanded ? <ChevronDown className="w-3.5 h-3.5" /> : <ChevronRight className="w-3.5 h-3.5" />}
+                                    </button>
+                                  )}
+                                </div>
 
-                                  return (
-                                    <div key={p.codigo} className="space-y-0.5">
-                                      {/* Fila Programa */}
-                                      <div
-                                        onClick={() => handleNodeClick(p, 'programa', { jur_cod: j.codigo })}
-                                        className={`flex items-center gap-2 px-2 py-1.5 rounded-lg cursor-pointer transition-all ${
-                                          isPActive
-                                            ? 'bg-neonPurple/10 border border-neonPurple/30 text-neonPurple shadow-[0_0_10px_rgba(161,0,255,0.05)]'
-                                            : 'hover:bg-white/5 text-slate-300'
-                                        }`}
-                                      >
-                                        <button
-                                          onClick={(e) => toggleExpand(pKey, e)}
-                                          className="p-0.5 hover:bg-white/10 rounded text-slate-400 hover:text-white"
-                                        >
-                                          {isPExpanded ? <ChevronDown className="w-3.5 h-3.5" /> : <ChevronRight className="w-3.5 h-3.5" />}
-                                        </button>
-                                        <Layers className="w-3.5 h-3.5 text-blue-400 shrink-0" />
-                                        <div className="truncate flex-1">
-                                          <span className="text-[10px] text-slate-500 mr-1.5 font-bold">Prog {p.codigo}</span>
-                                          <span className="font-sans font-medium">{p.nombre}</span>
-                                        </div>
-                                      </div>
+                                {isExpanded && j.programas && j.programas.length > 0 && (
+                                  <div className="pl-4 ml-3 border-l border-white/5 space-y-0.5">
+                                    {j.programas.map((p) => {
+                                      const pKey = `p_${j.codigo}_${p.codigo}`;
+                                      const isPExpanded = expandedNodes[pKey] || searchTerm;
+                                      const isPActive = isNodeActive(p.codigo, 'programa', { jur_cod: j.codigo });
 
-                                      {/* Actividades del Programa */}
-                                      {isPExpanded && (
-                                        <div className="pl-4 ml-3 border-l border-white/5 space-y-0.5">
-                                          {(p.actividades || []).map((a) => {
-                                            const isAActive = isNodeActive(a.codigo, 'actividad') && 
-                                                              activeNode?.prog_cod === p.codigo && 
-                                                              activeNode?.jur_cod === j.codigo;
-                                            
-                                            // Determinar si es Obra (código empieza con 5 o 6 en algunos presupuestos, o es definido)
-                                            const esObra = parseInt(a.codigo) >= 50;
-
-                                            return (
-                                              <div
-                                                key={a.codigo}
-                                                onClick={() => handleNodeClick(a, esObra ? 'obra' : 'actividad', { 
-                                                  prog_cod: p.codigo, 
-                                                  jur_cod: j.codigo 
-                                                })}
-                                                className={`flex items-center gap-2 px-2 py-1.5 rounded-lg cursor-pointer transition-all ${
-                                                  isAActive
-                                                    ? 'bg-neonBlue/10 border border-neonBlue/20 text-neonBlue'
-                                                    : 'hover:bg-white/5 text-slate-400 hover:text-slate-200'
-                                                }`}
+                                      return (
+                                        <div key={p.codigo} className="space-y-0.5">
+                                          <div
+                                            onClick={() => handleNodeClick(p, 'programa', { jur_cod: j.codigo })}
+                                            className={`flex items-center justify-between px-2 py-1.5 rounded-md cursor-pointer transition-all ${
+                                              isPActive
+                                                ? 'bg-neonPurple/10 border border-neonPurple/30 text-neonPurple font-semibold'
+                                                : 'hover:bg-white/5 text-slate-400 hover:text-slate-300'
+                                            }`}
+                                          >
+                                            <div className="flex items-center gap-1.5 truncate">
+                                              <FolderOpen className="w-3 h-3 text-neonPurple shrink-0" />
+                                              <span className="truncate">{p.nombre}</span>
+                                            </div>
+                                            {p.actividades && p.actividades.length > 0 && (
+                                              <button
+                                                onClick={(e) => toggleExpand(pKey, e)}
+                                                className="p-0.5 hover:bg-white/10 rounded transition-colors"
                                               >
-                                                <FileText className={`w-3.5 h-3.5 shrink-0 ${esObra ? 'text-amber-500' : 'text-slate-400'}`} />
-                                                <div className="truncate flex-1">
-                                                  <span className="text-[10px] text-slate-500 mr-1.5 font-bold">Act {a.codigo}</span>
-                                                  <span className="font-sans">{a.nombre}</span>
-                                                  {esObra && (
-                                                    <span className="ml-1.5 px-1 py-0.2 text-[8px] bg-amber-500/10 text-amber-500 border border-amber-500/20 rounded font-sans uppercase">Obra</span>
-                                                  )}
-                                                </div>
-                                              </div>
-                                            );
-                                          })}
+                                                {isPExpanded ? <ChevronDown className="w-3 h-3" /> : <ChevronRight className="w-3 h-3" />}
+                                              </button>
+                                            )}
+                                          </div>
+
+                                          {isPExpanded && p.actividades && p.actividades.length > 0 && (
+                                            <div className="pl-3 ml-2 border-l border-white/5 space-y-0.5">
+                                              {p.actividades.map((a) => {
+                                                const isAActive = isNodeActive(a.codigo, 'actividad', { jur_cod: j.codigo, prog_cod: p.codigo });
+                                                return (
+                                                  <div
+                                                    key={a.codigo}
+                                                    onClick={() => handleNodeClick(a, 'actividad', { jur_cod: j.codigo, prog_cod: p.codigo })}
+                                                    className={`px-2 py-1 rounded-md cursor-pointer transition-all flex items-center gap-1 truncate ${
+                                                      isAActive
+                                                        ? 'bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-semibold'
+                                                        : 'hover:bg-white/5 text-slate-500 hover:text-slate-400 text-[11px]'
+                                                    }`}
+                                                  >
+                                                    <FileText className="w-2.5 h-2.5 text-emerald-400 shrink-0" />
+                                                    <span className="truncate">{a.nombre}</span>
+                                                  </div>
+                                                );
+                                              })}
+                                            </div>
+                                          )}
                                         </div>
-                                      )}
-                                    </div>
-                                  );
-                                })}
+                                      );
+                                    })}
+                                  </div>
+                                )}
                               </div>
-                            )}
-                          </div>
-                        );
-                      })
+                            );
+                          })
+                        )}
+                      </div>
                     )}
-                  </div>
-                )}
 
-                {/* PESTAÑA: CLASIFICADOR POR OBJETO DEL GASTO */}
-                {activeTab === 'objeto' && (
-                  <div className="space-y-1 font-mono text-xs">
-                    {gastosObjetoFiltrados.length === 0 ? (
-                      <div className="text-center py-6 text-slate-500">No se encontraron partidas</div>
-                    ) : (
-                      gastosObjetoFiltrados.map((g) => {
-                        const isActive = isNodeActive(g.codigo, 'partida');
-                        return (
-                          <div
-                            key={g.codigo}
-                            onClick={() => handleNodeClick(g, 'partida')}
-                            className={`flex items-center gap-2.5 px-3 py-2 rounded-lg cursor-pointer transition-all ${
-                              isActive
-                                ? 'bg-neonBlue/10 border border-neonBlue/30 text-neonBlue'
-                                : 'hover:bg-white/5 text-slate-300'
-                            }`}
-                          >
-                            <Tag className="w-3.5 h-3.5 text-neonPurple shrink-0" />
-                            <div className="truncate flex-1">
-                              <span className="text-[10px] font-bold text-slate-500 mr-2 bg-slate-500/10 px-1 py-0.5 rounded">{g.codigo}</span>
-                              <span className="font-sans font-medium">{g.nombre}</span>
-                            </div>
-                          </div>
-                        );
-                      })
+                    {/* PESTAÑA: CLASIFICADOR POR OBJETO DEL GASTO */}
+                    {activeTab === 'objeto' && (
+                      <div className="space-y-1 font-mono text-xs">
+                        {gastosObjetoFiltrados.length === 0 ? (
+                          <div className="text-center py-6 text-slate-500">No se encontraron partidas</div>
+                        ) : (
+                          gastosObjetoFiltrados.map((g) => {
+                            const isActive = isNodeActive(g.codigo, 'partida');
+                            return (
+                              <div
+                                key={g.codigo}
+                                onClick={() => handleNodeClick(g, 'partida')}
+                                className={`flex items-center gap-2.5 px-3 py-2 rounded-lg cursor-pointer transition-all ${
+                                  isActive
+                                    ? 'bg-neonBlue/10 border border-neonBlue/30 text-neonBlue'
+                                    : 'hover:bg-white/5 text-slate-300'
+                                }`}
+                              >
+                                <Tag className="w-3.5 h-3.5 text-neonPurple shrink-0" />
+                                <div className="truncate flex-1">
+                                  <span className="text-[10px] font-bold text-slate-500 mr-2 bg-slate-500/10 px-1 py-0.5 rounded">{g.codigo}</span>
+                                  <span className="font-sans font-medium">{g.nombre}</span>
+                                </div>
+                              </div>
+                            );
+                          })
+                        )}
+                      </div>
                     )}
-                  </div>
-                )}
 
-                {/* PESTAÑA: CLASIFICADOR DE RECURSOS POR RUBRO */}
-                {activeTab === 'recursos' && (
-                  <div className="space-y-1 font-mono text-xs">
-                    {recursosRubroFiltrados.length === 0 ? (
-                      <div className="text-center py-6 text-slate-500">No se encontraron recursos</div>
-                    ) : (
-                      recursosRubroFiltrados.map((r) => {
-                        const isActive = isNodeActive(r.codigo, 'recurso');
-                        return (
-                          <div
-                            key={r.codigo}
-                            onClick={() => handleNodeClick(r, 'recurso')}
-                            className={`flex items-center gap-2.5 px-3 py-2 rounded-lg cursor-pointer transition-all ${
-                              isActive
-                                ? 'bg-neonBlue/10 border border-neonBlue/30 text-neonBlue'
-                                : 'hover:bg-white/5 text-slate-300'
-                            }`}
-                          >
-                            <Tag className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                            <div className="truncate flex-1">
-                              <span className="text-[10px] font-bold text-slate-500 mr-2 bg-slate-500/10 px-1 py-0.5 rounded">{r.codigo}</span>
-                              <span className="font-sans font-medium">{r.nombre}</span>
-                            </div>
-                          </div>
-                        );
-                      })
+                    {/* PESTAÑA: CLASIFICADOR DE RECURSOS POR RUBRO */}
+                    {activeTab === 'recursos' && (
+                      <div className="space-y-1 font-mono text-xs">
+                        {recursosRubroFiltrados.length === 0 ? (
+                          <div className="text-center py-6 text-slate-500">No se encontraron recursos</div>
+                        ) : (
+                          recursosRubroFiltrados.map((r) => {
+                            const isActive = isNodeActive(r.codigo, 'recurso');
+                            return (
+                              <div
+                                key={r.codigo}
+                                onClick={() => handleNodeClick(r, 'recurso')}
+                                className={`flex items-center gap-2.5 px-3 py-2 rounded-lg cursor-pointer transition-all ${
+                                  isActive
+                                    ? 'bg-neonBlue/10 border border-neonBlue/30 text-neonBlue'
+                                    : 'hover:bg-white/5 text-slate-300'
+                                }`}
+                              >
+                                <Tag className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                                <div className="truncate flex-1">
+                                  <span className="text-[10px] font-bold text-slate-500 mr-2 bg-slate-500/10 px-1 py-0.5 rounded">{r.codigo}</span>
+                                  <span className="font-sans font-medium">{r.nombre}</span>
+                                </div>
+                              </div>
+                            );
+                          })
+                        )}
+                      </div>
                     )}
-                  </div>
+                  </>
                 )}
-              </>
-            )}
-          </div>
+              </div>
+            </>
+          ) : (
+            /* Ficha Informativa del Documento Activo */
+            <div className="flex-1 p-6 flex flex-col items-center justify-center text-center gap-4 select-none">
+              <div className="relative mb-2">
+                <div className="absolute -inset-1.5 bg-gradient-to-r from-neonBlue to-neonPurple rounded-2xl blur opacity-40 animate-pulse"></div>
+                <div className="relative bg-rafamDark-900 p-4 rounded-2xl border border-white/10 flex items-center justify-center">
+                  {React.createElement(getModuleById(activeModule).icon || BookOpen, { className: "w-8 h-8 text-neonBlue" })}
+                </div>
+              </div>
+
+              <h3 className="text-base font-bold text-slate-100 tracking-wide font-sans">
+                {getModuleById(activeModule).nombre}
+              </h3>
+
+              <span className="px-2.5 py-0.5 text-[8px] font-mono tracking-wider bg-neonBlue/10 text-neonBlue border border-neonBlue/20 rounded-md uppercase font-bold">
+                Consulta Exclusiva RAG
+              </span>
+
+              <p className="text-xs text-slate-400 font-sans leading-relaxed max-w-xs mt-2">
+                {getModuleById(activeModule).descripcion}
+              </p>
+
+              <div className="w-full mt-6 bg-rafamDark-950/40 border border-white/5 rounded-xl p-4 text-left flex gap-3 items-start">
+                <div className="p-1.5 bg-emerald-500/10 rounded-lg text-emerald-400 border border-emerald-500/20 shrink-0 mt-0.5">
+                  <FileText className="w-3.5 h-3.5" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h4 className="text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-1">
+                    Foco del Auditor
+                  </h4>
+                  <p className="text-[10px] text-slate-500 leading-normal font-sans">
+                    Las preguntas enviadas al chat se responderán basándose única y estrictamente en este documento.
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
         </>
       )}
     </div>

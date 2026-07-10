@@ -16,6 +16,14 @@ export default function App() {
   const [isMobile, setIsMobile] = useState(false);
   const [mobileTab, setMobileTab] = useState('explorador');
   const [tempUrl, setTempUrl] = useState(getBackendUrl());
+  const [activeModule, setActiveModule] = useState('estructura_rafam');
+
+  const handleModuleChange = (moduleId) => {
+    setActiveModule(moduleId);
+    if (moduleId !== 'estructura_rafam') {
+      setActiveNode(null);
+    }
+  };
 
   const [chatMessages, setChatMessages] = useState([
     {
@@ -142,6 +150,7 @@ export default function App() {
                   <div className="flex-1 overflow-y-auto">
                     <Dashboard 
                       activeNode={activeNode} 
+                      activeModule={activeModule}
                       onQuickAsk={(queryText) => {
                         handleQuickAsk(queryText);
                         setMobileTab('chat');
@@ -159,6 +168,8 @@ export default function App() {
                     onSelectNode={handleSelectNode}
                     collapsed={false}
                     setCollapsed={() => {}}
+                    activeModule={activeModule}
+                    onModuleChange={handleModuleChange}
                   />
                 </div>
               )}
@@ -175,6 +186,7 @@ export default function App() {
                 forceFullscreen={true}
                 messages={chatMessages}
                 setMessages={setChatMessages}
+                activeModule={activeModule}
               />
             </div>
           )}
@@ -279,6 +291,8 @@ export default function App() {
           onSelectNode={handleSelectNode}
           collapsed={sidebarCollapsed}
           setCollapsed={setSidebarCollapsed}
+          activeModule={activeModule}
+          onModuleChange={handleModuleChange}
         />
 
         {/* Dashboard y Consola a la derecha */}
@@ -317,6 +331,7 @@ export default function App() {
               <>
                 <Dashboard 
                   activeNode={activeNode} 
+                  activeModule={activeModule}
                   onQuickAsk={handleQuickAsk}
                 />
                 <button
@@ -338,6 +353,7 @@ export default function App() {
             dashboardCollapsed={dashboardCollapsed}
             messages={chatMessages}
             setMessages={setChatMessages}
+            activeModule={activeModule}
           />
         </div>
       </div>

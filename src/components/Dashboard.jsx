@@ -15,13 +15,89 @@ import {
   UserCheck,
   Building
 } from 'lucide-react';
+import { getModuleById } from '../utils/modules';
 
-export default function Dashboard({ activeNode, onQuickAsk }) {
+export default function Dashboard({ activeNode, activeModule = 'estructura_rafam', onQuickAsk }) {
   const [loading, setLoading] = useState(false);
   const [details, setDetails] = useState(null);
   const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState('finanzas'); // 'finanzas', 'metas', 'personal', 'inversiones'
   const [showRightBar, setShowRightBar] = useState(true);
+
+  // Si el módulo activo es documental, renderizamos su ficha en lugar del explorador de árbol
+  if (activeModule !== 'estructura_rafam') {
+    const currentModule = getModuleById(activeModule);
+    return (
+      <div className="flex-1 p-6 md:p-8 flex flex-col justify-start overflow-y-auto h-full bg-rafamDark-900/40 custom-scrollbar select-none pt-12">
+        <div className="max-w-4xl mx-auto w-full space-y-8 relative">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-neonBlue/10 rounded-full blur-3xl -z-10 animate-pulse"></div>
+          <div className="absolute top-1/3 left-1/3 -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-neonPurple/10 rounded-full blur-3xl -z-10"></div>
+
+          {/* Tarjeta de Cabecera del Documento */}
+          <div className="glass p-6 md:p-8 rounded-2xl border border-white/5 bg-rafamDark-900/60 relative overflow-hidden flex flex-col md:flex-row items-start gap-6">
+            <div className="relative shrink-0 self-center md:self-start">
+              <div className="absolute -inset-1.5 bg-gradient-to-r from-neonBlue to-neonPurple rounded-2xl blur opacity-40 animate-pulse"></div>
+              <div className="relative bg-rafamDark-900 p-4 rounded-2xl border border-white/10 flex items-center justify-center">
+                {React.createElement(currentModule.icon || Compass, { className: "w-8 h-8 text-neonBlue" })}
+              </div>
+            </div>
+
+            <div className="flex-1 text-center md:text-left space-y-3">
+              <div className="flex flex-col md:flex-row md:items-center gap-2.5 justify-center md:justify-start">
+                <h1 className="text-2xl font-extrabold text-white tracking-wide">
+                  {currentModule.nombre}
+                </h1>
+                <span className="inline-flex self-center px-2 py-0.5 text-[8px] font-mono tracking-wider bg-neonBlue/15 text-neonBlue border border-neonBlue/20 rounded-md uppercase font-bold">
+                  Auditoría RAG Activa
+                </span>
+              </div>
+              <p className="text-xs md:text-sm text-slate-300 font-sans leading-relaxed">
+                {currentModule.descripcion}
+              </p>
+              <div className="text-[10px] text-slate-500 font-mono flex items-center gap-1.5 justify-center md:justify-start">
+                <span>Cuaderno ID:</span>
+                <span className="bg-white/5 px-2 py-0.5 rounded text-slate-400 select-all font-bold">{currentModule.notebookId}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Sección de Consultas Rápidas */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-neonBlue animate-pulse" />
+              <h3 className="text-xs font-bold text-white uppercase tracking-widest font-mono">
+                Consultas sugeridas sobre este documento
+              </h3>
+            </div>
+            <p className="text-xs text-slate-400 font-sans">
+              Haz clic en cualquiera de las siguientes preguntas frecuentes para iniciar un análisis profundo en el Auditor RAG basándote exclusivamente en este manual:
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {currentModule.preguntasRapidas.map((q, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => onQuickAsk(q)}
+                  className="text-left p-4 rounded-xl bg-rafamDark-900/60 border border-white/5 hover:border-neonBlue/40 text-xs font-sans text-slate-300 hover:text-white transition-all duration-300 hover:-translate-y-1 active:scale-[0.98] shadow-md flex flex-col gap-3 h-full justify-between group relative overflow-hidden"
+                >
+                  <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-neonBlue/5 to-transparent rounded-bl-full -z-10 group-hover:from-neonBlue/10 transition-all"></div>
+                  <div className="text-[10px] font-mono text-neonBlue font-bold bg-neonBlue/5 border border-neonBlue/10 px-2 py-0.5 rounded-md w-fit">
+                    Opción 0{idx+1}
+                  </div>
+                  <span className="leading-relaxed flex-1 mt-1 font-medium group-hover:text-slate-100 transition-colors">
+                    {q}
+                  </span>
+                  <span className="text-[9px] font-mono text-slate-500 group-hover:text-neonBlue flex items-center gap-1 mt-2 transition-colors">
+                    Preguntar al RAG <CornerDownRight className="w-3 h-3" />
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   useEffect(() => {
     if (!activeNode) return;
