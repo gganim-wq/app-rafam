@@ -10,7 +10,10 @@ export const modulesList = [
     preguntasRapidas: [
       '¿Cuáles son las jurisdicciones con mayor presupuesto asignado?',
       '¿Qué programas presupuestarios pertenecen a la Secretaría de Obras Públicas?',
-      '¿Cuáles son los principales recursos presupuestados por tasas rurales?'
+      '¿Cuáles son los principales recursos presupuestados por tasas rurales?',
+      '¿Cuál es el presupuesto vigente para la Jurisdicción de Salud?',
+      '¿Qué partidas de gasto tienen asignado mayor crédito en la Secretaría de Seguridad?',
+      '¿Cómo se distribuye el presupuesto de recursos entre tasas municipales y coparticipación?'
     ]
   },
   {
@@ -22,7 +25,10 @@ export const modulesList = [
     preguntasRapidas: [
       '¿Cuál es el monto total presupuestado de gastos y recursos para el ejercicio?',
       '¿Qué porcentaje del presupuesto se destina a gastos de personal y servicios?',
-      '¿Cuáles son las principales fuentes de financiamiento proyectadas?'
+      '¿Cuáles son las principales fuentes de financiamiento proyectadas?',
+      '¿Qué programas de inversión pública tienen mayor asignación presupuestaria?',
+      '¿Cuál es el monto previsto para el servicio de la deuda en este ejercicio?',
+      '¿Cómo se detallan las transferencias de capital recibidas de Provincia o Nación?'
     ]
   },
   {
@@ -34,7 +40,10 @@ export const modulesList = [
     preguntasRapidas: [
       '¿Cuáles son las alícuotas vigentes para la Tasa por Servicios Urbanos?',
       '¿Qué exenciones impositivas se contemplan para jubilados o personas con discapacidad?',
-      '¿Cómo se calculan las multas y recargos por mora en el pago de tasas municipales?'
+      '¿Cómo se calculan las multas y recargos por mora en el pago de tasas municipales?',
+      '¿Cuál es la base imponible y alícuota de la Tasa por Inspección de Seguridad e Higiene?',
+      '¿Qué beneficios existen para contribuyentes cumplidores en Chascomús?',
+      '¿Cómo se regulan los derechos de publicidad y propaganda en el espacio público?'
     ]
   },
   {
@@ -46,7 +55,10 @@ export const modulesList = [
     preguntasRapidas: [
       '¿Cuáles son las fechas de vencimiento de la Tasa de Seguridad e Higiene?',
       '¿Cuándo vence la opción de pago anual anticipado y qué descuento tiene?',
-      '¿Cuál es el calendario de vencimientos para las patentes de rodados y motos?'
+      '¿Cuál es el calendario de vencimientos para las patentes de rodados y motos?',
+      '¿Qué plazos se establecen para el pago de la Tasa por Servicios Sanitarios?',
+      '¿Cuáles son los vencimientos de la Tasa de Alumbrado Público?',
+      '¿Cómo se coordinan las fechas de vencimiento para la Tasa por Conservación de la Red Vial?'
     ]
   },
   {
@@ -58,7 +70,10 @@ export const modulesList = [
     preguntasRapidas: [
       '¿Cuál es el stock de deuda flotante consolidado al cierre del último trimestre?',
       '¿Cómo evolucionaron los pasivos exigibles con proveedores en el período?',
-      '¿Qué porcentaje representa la deuda pública sobre los recursos corrientes?'
+      '¿Qué porcentaje representa la deuda pública sobre los recursos corrientes?',
+      '¿Cuál es el detalle de los compromisos financieros a largo plazo del municipio?',
+      '¿Qué variaciones trimestrales se observan en las cuentas de pasivos corrientes?',
+      '¿Cómo se proyecta la amortización del stock de deuda para el próximo año?'
     ]
   },
   {
@@ -70,7 +85,10 @@ export const modulesList = [
     preguntasRapidas: [
       '¿Cuáles son las etapas formales del gasto público según el manual RAFAM?',
       '¿Qué función cumple el Clasificador por Objeto del Gasto y cómo se estructura?',
-      '¿Cómo se define el momento del devengamiento de un recurso?'
+      '¿Cómo se define el momento del devengamiento de un recurso?',
+      '¿Qué principios contables rigen el registro de transacciones en la administración pública?',
+      '¿Cuál es la diferencia entre el gasto comprometido y el devengado según el manual?',
+      '¿Cómo se estructuran los fondos rotatorios o de caja chica en el municipio?'
     ]
   },
   {
@@ -82,7 +100,10 @@ export const modulesList = [
     preguntasRapidas: [
       '¿Cuáles son las atribuciones y deberes del Concejo Deliberante según la LOM?',
       '¿Cómo se compone y organiza el Departamento Ejecutivo municipal?',
-      '¿Cuáles son los requisitos y prohibiciones para ser concejal en la Provincia?'
+      '¿Cuáles son los requisitos y prohibiciones para ser concejal en la Provincia?',
+      '¿Qué responsabilidades patrimoniales tienen los funcionarios municipales según la LOM?',
+      '¿Cómo se regula el proceso de destitución o suspensión del Intendente municipal?',
+      '¿Cuáles son las pautas para la aprobación de ordenanzas impositivas por la Asamblea de Mayores Contribuyentes?'
     ]
   }
 ];

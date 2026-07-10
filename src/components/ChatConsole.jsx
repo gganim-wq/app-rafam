@@ -38,6 +38,16 @@ export default function ChatConsole({
   const [inputText, setInputText] = useState('');
   const [loading, setLoading] = useState(false);
   const [model, setModel] = useState('gemini-2.5-flash');
+  const [suggestionOffset, setSuggestionOffset] = useState(0);
+
+  useEffect(() => {
+    setSuggestionOffset(0);
+  }, [activeModule]);
+
+  const handleCycleSuggestions = () => {
+    const total = getModuleById(activeModule).preguntasRapidas.length;
+    setSuggestionOffset(prev => (prev + 3) % total);
+  };
 
   const chatEndRef = useRef(null);
 
@@ -87,7 +97,8 @@ export default function ChatConsole({
 
     try {
       let apiQuery = query;
-      if (activeModule !== 'estructura_rafam') {
+      const isSystemCommand = query.toLowerCase().includes('ragchas');
+      if (activeModule !== 'estructura_rafam' && !isSystemCommand) {
         const currentModule = getModuleById(activeModule);
         if (currentModule && currentModule.notebookId) {
           apiQuery = `${query}\n\n[DIRECTIVA DE CONTROL CONTABLE RAG RAFAM]\nResponde única y exclusivamente basándote en el documento seleccionado. Si la respuesta no figura de forma explícita en él, di textualmente: "No se encontró información sobre este tema en el documento seleccionado". Bajo ninguna circunstancia uses conocimientos externos ni supongas datos.\n[FORCED_NOTEBOOK: ${currentModule.notebookId}]`;
@@ -483,6 +494,35 @@ export default function ChatConsole({
               Guardar Reporte
             </button>
           </div>
+
+          {/* Fila de Preguntas Sugeridas / Proponer Otras (solo visible si activeModule es un manual) */}
+          {activeModule !== 'estructura_rafam' && (
+            <div className="px-4 py-2 border-t border-white/5 bg-rafamDark-900/20 flex items-center gap-2 overflow-x-auto whitespace-nowrap custom-scrollbar select-none">
+              <span className="text-[9px] font-mono text-slate-500 uppercase tracking-wider shrink-0 flex items-center gap-1">
+                <Sparkles className="w-3 h-3 text-neonBlue animate-pulse" /> Sugeridas:
+              </span>
+              <div className="flex items-center gap-2 overflow-x-auto flex-grow no-scrollbar">
+                {getModuleById(activeModule).preguntasRapidas.slice(suggestionOffset, suggestionOffset + 3).map((q, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => handleSend(null, q)}
+                    className="px-2.5 py-1 rounded-full bg-rafamDark-950/60 border border-white/5 text-[9px] text-slate-300 hover:text-white hover:border-neonBlue/40 active:scale-95 transition-all truncate max-w-[200px]"
+                    title={q}
+                  >
+                    {q}
+                  </button>
+                ))}
+              </div>
+              <button
+                type="button"
+                onClick={handleCycleSuggestions}
+                className="px-2 py-1 rounded-lg bg-white/5 border border-white/10 text-[9px] font-mono text-neonBlue hover:bg-neonBlue/5 active:scale-95 transition-all shrink-0 ml-auto"
+              >
+                Proponer otras
+              </button>
+            </div>
+          )}
 
           {/* Formulario de Input */}
           <form 

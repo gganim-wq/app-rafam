@@ -171,6 +171,10 @@ export default function App() {
                     setCollapsed={() => {}}
                     activeModule={activeModule}
                     onModuleChange={handleModuleChange}
+                    onQuickAsk={(queryText) => {
+                      handleQuickAsk(queryText);
+                      setMobileTab('chat');
+                    }}
                   />
                 </div>
               )}
@@ -294,6 +298,7 @@ export default function App() {
           setCollapsed={setSidebarCollapsed}
           activeModule={activeModule}
           onModuleChange={handleModuleChange}
+          onQuickAsk={handleQuickAsk}
         />
 
         {/* Dashboard y Consola a la derecha */}

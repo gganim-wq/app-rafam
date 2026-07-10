@@ -13,7 +13,8 @@ import {
   TrendingUp,
   Tag,
   BookOpen,
-  Landmark
+  Landmark,
+  Sparkles
 } from 'lucide-react';
 import { modulesList, getModuleById } from '../utils/modules';
 
@@ -25,7 +26,8 @@ export default function Sidebar({
   collapsed, 
   setCollapsed,
   activeModule = 'estructura_rafam',
-  onModuleChange
+  onModuleChange,
+  onQuickAsk
 }) {
   const [activeTab, setActiveTab] = useState('gastos'); // 'gastos', 'objeto', 'recursos'
   const [searchTerm, setSearchTerm] = useState('');
@@ -409,6 +411,34 @@ export default function Sidebar({
                   </p>
                 </div>
               </div>
+
+              {/* Sección de Consultas Rápidas (sólo visible en móvil) */}
+              {activeModule !== 'estructura_rafam' && (
+                <div className="w-full mt-6 space-y-3 text-left md:hidden">
+                  <div className="flex items-center gap-1.5 px-1">
+                    <Sparkles className="w-3.5 h-3.5 text-neonBlue animate-pulse" />
+                    <h3 className="text-[10px] font-bold text-white uppercase tracking-widest font-mono">
+                      Consultas sugeridas
+                    </h3>
+                  </div>
+                  <div className="flex flex-col gap-2.5">
+                    {getModuleById(activeModule).preguntasRapidas.slice(0, 3).map((q, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => onQuickAsk && onQuickAsk(q)}
+                        className="text-left p-3.5 rounded-xl bg-rafamDark-950/60 border border-white/5 hover:border-neonBlue/40 text-xs font-sans text-slate-300 hover:text-white transition-all duration-300 active:scale-[0.98] flex flex-col gap-1.5 relative overflow-hidden group"
+                      >
+                        <div className="text-[9px] font-mono text-neonBlue font-bold bg-neonBlue/5 border border-neonBlue/10 px-1.5 py-0.5 rounded w-fit">
+                          Opción 0{idx+1}
+                        </div>
+                        <span className="leading-relaxed font-medium">
+                          {q}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </>
