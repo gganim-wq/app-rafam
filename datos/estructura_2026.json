@@ -1,0 +1,1264 @@
+{
+  "año": 2026,
+  "jurisdicciones": [
+    {
+      "codigo": "1110110000",
+      "nombre": "Intendente"
+    },
+    {
+      "codigo": "1110111000",
+      "nombre": "Secretaría de Hacienda"
+    },
+    {
+      "codigo": "1110112000",
+      "nombre": "Secretaría de Gobierno"
+    },
+    {
+      "codigo": "1110113000",
+      "nombre": "Secretaría de Desarrollo Social"
+    },
+    {
+      "codigo": "1110115000",
+      "nombre": "Secretaría de Turismo, Deportes y Cultura"
+    },
+    {
+      "codigo": "1110116000",
+      "nombre": "Secretaría de Salud Pública"
+    },
+    {
+      "codigo": "1110117000",
+      "nombre": "Secretaria de Seguridad Ciudadana"
+    },
+    {
+      "codigo": "1110118000",
+      "nombre": "Servicios de la Deuda"
+    },
+    {
+      "codigo": "1110119000",
+      "nombre": "Secretaría de Obras, Serv. Públicos y Ambiente"
+    },
+    {
+      "codigo": "1110120000",
+      "nombre": "Secretaría de Modernización y Gestión Pública"
+    },
+    {
+      "codigo": "1110200000",
+      "nombre": "H.C.D."
+    }
+  ],
+  "programas": [
+    {
+      "codigo": "01",
+      "nombre": "Secretaría Privada",
+      "jurisdiccion_codigo": "1110110000",
+      "actividades": []
+    },
+    {
+      "codigo": "21",
+      "nombre": "Atención al Vecino",
+      "jurisdiccion_codigo": "1110110000",
+      "actividades": []
+    },
+    {
+      "codigo": "01",
+      "nombre": "Actividad Central Sec Hacienda",
+      "jurisdiccion_codigo": "1110111000",
+      "actividades": [
+        {
+          "codigo": "01",
+          "nombre": "Actividad Central Secretaría de Hacienda"
+        },
+        {
+          "codigo": "02",
+          "nombre": "Administración  General"
+        }
+      ]
+    },
+    {
+      "codigo": "71",
+      "nombre": "Ingresos Públicos",
+      "jurisdiccion_codigo": "1110111000",
+      "actividades": [
+        {
+          "codigo": "01",
+          "nombre": "Act Central INg. Públicos"
+        },
+        {
+          "codigo": "04",
+          "nombre": "Oficina de Guias"
+        },
+        {
+          "codigo": "05",
+          "nombre": "Habilitaciones"
+        }
+      ]
+    },
+    {
+      "codigo": "72",
+      "nombre": "Prom. de Empleo y Fom. Productivo",
+      "jurisdiccion_codigo": "1110111000",
+      "actividades": [
+        {
+          "codigo": "01",
+          "nombre": "Adm. y Coord. Políticas de Empleo y Fom. Prod"
+        },
+        {
+          "codigo": "02",
+          "nombre": "Servicio de Empleo e Intermediación Laboral"
+        },
+        {
+          "codigo": "03",
+          "nombre": "Asesoramiento a Empresas, Emprendedores y Productores"
+        }
+      ]
+    },
+    {
+      "codigo": "01",
+      "nombre": "Act. Central Gobierno",
+      "jurisdiccion_codigo": "1110112000",
+      "actividades": [
+        {
+          "codigo": "01",
+          "nombre": "Adm. y Coord. Secretaría de Gobierno"
+        },
+        {
+          "codigo": "07",
+          "nombre": "Comisión de la Memoria"
+        },
+        {
+          "codigo": "08",
+          "nombre": "Consejo de Ordenamiento Urbano y Territorial"
+        },
+        {
+          "codigo": "10",
+          "nombre": "Foro Ambiental Municipal"
+        },
+        {
+          "codigo": "61",
+          "nombre": "Reformas Centro Cívico"
+        }
+      ]
+    },
+    {
+      "codigo": "23",
+      "nombre": "Faltas",
+      "jurisdiccion_codigo": "1110112000",
+      "actividades": []
+    },
+    {
+      "codigo": "24",
+      "nombre": "Políticas del Hábitat",
+      "jurisdiccion_codigo": "1110112000",
+      "actividades": []
+    },
+    {
+      "codigo": "26",
+      "nombre": "Planeamiento Territorial",
+      "jurisdiccion_codigo": "1110112000",
+      "actividades": []
+    },
+    {
+      "codigo": "27",
+      "nombre": "Oficina Municipal de Información al Consumidor",
+      "jurisdiccion_codigo": "1110112000",
+      "actividades": []
+    },
+    {
+      "codigo": "01",
+      "nombre": "Actividad Central Desarrollo Social",
+      "jurisdiccion_codigo": "1110113000",
+      "actividades": []
+    },
+    {
+      "codigo": "32",
+      "nombre": "Hogar de Ancianos",
+      "jurisdiccion_codigo": "1110113000",
+      "actividades": [
+        {
+          "codigo": "01",
+          "nombre": "Administración Hogar de Ancianos"
+        },
+        {
+          "codigo": "62",
+          "nombre": "Mejoras Hogar de Ancianos"
+        }
+      ]
+    },
+    {
+      "codigo": "34",
+      "nombre": "Políticas de Niñez y Adolescencia",
+      "jurisdiccion_codigo": "1110113000",
+      "actividades": [
+        {
+          "codigo": "01",
+          "nombre": "Adm y Coord de Niñez y Adolescencia"
+        },
+        {
+          "codigo": "07",
+          "nombre": "Hogar La Casita y Pre egreso"
+        },
+        {
+          "codigo": "08",
+          "nombre": "Servicio Local de Prot. y Prom. de los Derechos del Niño y Adolesc."
+        },
+        {
+          "codigo": "09",
+          "nombre": "Orquesta Escuela"
+        },
+        {
+          "codigo": "10",
+          "nombre": "Espacio Primera Infancia 30 de Mayo"
+        },
+        {
+          "codigo": "11",
+          "nombre": "Espacio Primera Infancia San Luis"
+        },
+        {
+          "codigo": "65",
+          "nombre": "Mejoras Edificio Mendoza 95"
+        },
+        {
+          "codigo": "66",
+          "nombre": "Reformas Hogar La Casita"
+        }
+      ]
+    },
+    {
+      "codigo": "36",
+      "nombre": "Servicios Educativos",
+      "jurisdiccion_codigo": "1110113000",
+      "actividades": [
+        {
+          "codigo": "01",
+          "nombre": "Administración Servicios Educativos"
+        },
+        {
+          "codigo": "02",
+          "nombre": "Escuela Primaria Municipal Nro1"
+        },
+        {
+          "codigo": "03",
+          "nombre": "Escuela Municipal Nro2"
+        },
+        {
+          "codigo": "04",
+          "nombre": "Escuela Municipal Nro3"
+        },
+        {
+          "codigo": "05",
+          "nombre": "Jardín Maternal C. Amézaga"
+        },
+        {
+          "codigo": "06",
+          "nombre": "Escuela Secundaria Municipal Nro1"
+        },
+        {
+          "codigo": "07",
+          "nombre": "Centro Universitario"
+        },
+        {
+          "codigo": "68",
+          "nombre": "Construcción Centro Universitario Barrio 30 de Mayo - Etapa II"
+        }
+      ]
+    },
+    {
+      "codigo": "37",
+      "nombre": "Políticas Comunitarias",
+      "jurisdiccion_codigo": "1110113000",
+      "actividades": [
+        {
+          "codigo": "01",
+          "nombre": "Adm.y Coord. Políticas Comunitarias"
+        },
+        {
+          "codigo": "02",
+          "nombre": "SUM San Luis"
+        },
+        {
+          "codigo": "03",
+          "nombre": "Políticas Alimenticias"
+        },
+        {
+          "codigo": "04",
+          "nombre": "Políticas Habitacionales"
+        },
+        {
+          "codigo": "05",
+          "nombre": "Equipo Tecnico Territorial - Adultos Mayores"
+        },
+        {
+          "codigo": "06",
+          "nombre": "Cuadrilla de mantenimiento y constr. Desarrollo Social"
+        },
+        {
+          "codigo": "61",
+          "nombre": "Refacción Acceso Depósito Alimentos Desarrollo Social"
+        }
+      ]
+    },
+    {
+      "codigo": "38",
+      "nombre": "Políticas de Género",
+      "jurisdiccion_codigo": "1110113000",
+      "actividades": [
+        {
+          "codigo": "01",
+          "nombre": "Promoción de Políticas de Género"
+        },
+        {
+          "codigo": "02",
+          "nombre": "Hogar de Tránsito"
+        }
+      ]
+    },
+    {
+      "codigo": "01",
+      "nombre": "Administración Central Sec. Turismo, Deportes y Cultura",
+      "jurisdiccion_codigo": "1110115000",
+      "actividades": [
+        {
+          "codigo": "01",
+          "nombre": "Administración General Sec. de Turismo, Deportes y Cultura"
+        },
+        {
+          "codigo": "61",
+          "nombre": "Proyecto Central"
+        }
+      ]
+    },
+    {
+      "codigo": "33",
+      "nombre": "Desarrollo Cultural y Economía Creativa",
+      "jurisdiccion_codigo": "1110115000",
+      "actividades": [
+        {
+          "codigo": "01",
+          "nombre": "Act Central Des. Cultural y Econ, Creativa"
+        },
+        {
+          "codigo": "03",
+          "nombre": "Teatro Municipal Brazolla"
+        },
+        {
+          "codigo": "61",
+          "nombre": "Mejoras Teatro Municipal Brazolla"
+        }
+      ]
+    },
+    {
+      "codigo": "35",
+      "nombre": "Banda Municipal de Música",
+      "jurisdiccion_codigo": "1110115000",
+      "actividades": []
+    },
+    {
+      "codigo": "39",
+      "nombre": "Promoción del Patrimonio, Historia y Memoria Viva",
+      "jurisdiccion_codigo": "1110115000",
+      "actividades": [
+        {
+          "codigo": "01",
+          "nombre": "Adm. y Coord. Prom. y Preserv. del Patrimonio"
+        },
+        {
+          "codigo": "02",
+          "nombre": "Museo y Archivo Ferrov. del Centro Culural Vieja Estación"
+        },
+        {
+          "codigo": "03",
+          "nombre": "Museo Pampeano"
+        },
+        {
+          "codigo": "04",
+          "nombre": "Casa de Casco"
+        },
+        {
+          "codigo": "05",
+          "nombre": "Instituto Historiográfico"
+        }
+      ]
+    },
+    {
+      "codigo": "40",
+      "nombre": "Políticas de Accesibilidad",
+      "jurisdiccion_codigo": "1110115000",
+      "actividades": []
+    },
+    {
+      "codigo": "51",
+      "nombre": "Promoción y Desarrollo del Deporte",
+      "jurisdiccion_codigo": "1110115000",
+      "actividades": [
+        {
+          "codigo": "01",
+          "nombre": "Actividad Central  Prom y Des del Deporte"
+        },
+        {
+          "codigo": "02",
+          "nombre": "Polideportivo Municipal"
+        }
+      ]
+    },
+    {
+      "codigo": "52",
+      "nombre": "Promoción y Desarrollo del Turismo",
+      "jurisdiccion_codigo": "1110115000",
+      "actividades": []
+    },
+    {
+      "codigo": "01",
+      "nombre": "Actividad Central de Salud",
+      "jurisdiccion_codigo": "1110116000",
+      "actividades": []
+    },
+    {
+      "codigo": "61",
+      "nombre": "Salud Comunitaria",
+      "jurisdiccion_codigo": "1110116000",
+      "actividades": [
+        {
+          "codigo": "03",
+          "nombre": "Centro de día"
+        }
+      ]
+    },
+    {
+      "codigo": "62",
+      "nombre": "Hospital Municipal San Vicente de Paul",
+      "jurisdiccion_codigo": "1110116000",
+      "actividades": [
+        {
+          "codigo": "01",
+          "nombre": "Administración y Coordinación Hospital Municipal San Vicente de Paul"
+        },
+        {
+          "codigo": "02",
+          "nombre": "Servicios de  Diagnóstico"
+        },
+        {
+          "codigo": "04",
+          "nombre": "Servicios de Atención Médica"
+        },
+        {
+          "codigo": "63",
+          "nombre": "Construcción Sector Cubierto para Ambulancias"
+        },
+        {
+          "codigo": "64",
+          "nombre": "Reparación Techo y Amp. Bromatologia"
+        }
+      ]
+    },
+    {
+      "codigo": "63",
+      "nombre": "Bromatología y Zoonosis",
+      "jurisdiccion_codigo": "1110116000",
+      "actividades": []
+    },
+    {
+      "codigo": "01",
+      "nombre": "Administración Central Sec. de Seguridad",
+      "jurisdiccion_codigo": "1110117000",
+      "actividades": [
+        {
+          "codigo": "01",
+          "nombre": "Administracioón y Coordinación Secretaría de Seguridad"
+        },
+        {
+          "codigo": "61",
+          "nombre": "Puesta en Valor Edificio Bolivar N°477"
+        },
+        {
+          "codigo": "62",
+          "nombre": "Ampliación y Mejoras Edificio Seg. Vial Velódromo"
+        }
+      ]
+    },
+    {
+      "codigo": "71",
+      "nombre": "Prevención del Delito y las Violencias",
+      "jurisdiccion_codigo": "1110117000",
+      "actividades": []
+    },
+    {
+      "codigo": "72",
+      "nombre": "Promoción y Prevención Vial",
+      "jurisdiccion_codigo": "1110117000",
+      "actividades": []
+    },
+    {
+      "codigo": "74",
+      "nombre": "Ordenamiento del Tránsito",
+      "jurisdiccion_codigo": "1110117000",
+      "actividades": [
+        {
+          "codigo": "01",
+          "nombre": "Actividad Central Ordeamiento del Tránsito"
+        },
+        {
+          "codigo": "02",
+          "nombre": "Sistema de Estacionamiento Medido"
+        }
+      ]
+    },
+    {
+      "codigo": "76",
+      "nombre": "Monitoreo y Videovigilancia",
+      "jurisdiccion_codigo": "1110117000",
+      "actividades": []
+    },
+    {
+      "codigo": "77",
+      "nombre": "Defensa Civil",
+      "jurisdiccion_codigo": "1110117000",
+      "actividades": []
+    },
+    {
+      "codigo": "78",
+      "nombre": "Control y Prevención Lacustre",
+      "jurisdiccion_codigo": "1110117000",
+      "actividades": []
+    },
+    {
+      "codigo": "01",
+      "nombre": "Intereses y Gastos de la Deuda",
+      "jurisdiccion_codigo": "1110118000",
+      "actividades": []
+    },
+    {
+      "codigo": "92",
+      "nombre": "Deuda Flotante",
+      "jurisdiccion_codigo": "1110118000",
+      "actividades": []
+    },
+    {
+      "codigo": "93",
+      "nombre": "Deuda Consolidada",
+      "jurisdiccion_codigo": "1110118000",
+      "actividades": []
+    },
+    {
+      "codigo": "01",
+      "nombre": "Actividad Central de Obras , Servicios Publicos y Ambiente",
+      "jurisdiccion_codigo": "1110119000",
+      "actividades": [
+        {
+          "codigo": "01",
+          "nombre": "Actividad Central Secretaría de Obras y Servicios e Inspecciones"
+        },
+        {
+          "codigo": "02",
+          "nombre": "Taller Municipal"
+        },
+        {
+          "codigo": "03",
+          "nombre": "Intendencia y Ferroautomotor"
+        },
+        {
+          "codigo": "61",
+          "nombre": "Cerramiento Cementerio Municipal"
+        },
+        {
+          "codigo": "62",
+          "nombre": "Mejoras Cementerio Municipal"
+        }
+      ]
+    },
+    {
+      "codigo": "41",
+      "nombre": "Servicios Sanitarios",
+      "jurisdiccion_codigo": "1110119000",
+      "actividades": [
+        {
+          "codigo": "01",
+          "nombre": "Adm. y Coord Servicios Sanitarios"
+        },
+        {
+          "codigo": "02",
+          "nombre": "Agua"
+        },
+        {
+          "codigo": "03",
+          "nombre": "Cloaca"
+        },
+        {
+          "codigo": "04",
+          "nombre": "Planta Depuradora"
+        },
+        {
+          "codigo": "61",
+          "nombre": "Ampliación Planta Depuradora"
+        },
+        {
+          "codigo": "62",
+          "nombre": "Ampliación Planta Depuradora Etapa II"
+        }
+      ]
+    },
+    {
+      "codigo": "42",
+      "nombre": "Higiene Urbana",
+      "jurisdiccion_codigo": "1110119000",
+      "actividades": [
+        {
+          "codigo": "01",
+          "nombre": "Adm. y  Coord. Higiene Urbana"
+        },
+        {
+          "codigo": "03",
+          "nombre": "Recolección de Residuos"
+        },
+        {
+          "codigo": "11",
+          "nombre": "Disposición Final de Residuos"
+        }
+      ]
+    },
+    {
+      "codigo": "43",
+      "nombre": "Instalaciones Eléctricas",
+      "jurisdiccion_codigo": "1110119000",
+      "actividades": [
+        {
+          "codigo": "01",
+          "nombre": "Administración y Coord. Mant. Inst. Eléctricas"
+        },
+        {
+          "codigo": "02",
+          "nombre": "Alumbrado Público"
+        },
+        {
+          "codigo": "03",
+          "nombre": "Mantenimiento Inst Electricas Edilicias"
+        },
+        {
+          "codigo": "90",
+          "nombre": "Reconversión Alumbrado Público"
+        },
+        {
+          "codigo": "91",
+          "nombre": "Reconversión Lumínmica Barrio Jardin-Acceso Norte"
+        },
+        {
+          "codigo": "92",
+          "nombre": "Reconversión Lumínica Costanera, Camping La Puerta - San Uberto"
+        }
+      ]
+    },
+    {
+      "codigo": "44",
+      "nombre": "Vialidad Municipal",
+      "jurisdiccion_codigo": "1110119000",
+      "actividades": [
+        {
+          "codigo": "01",
+          "nombre": "Administración y Coordinación Vialidad Municipal"
+        },
+        {
+          "codigo": "02",
+          "nombre": "Vialidad Urbana"
+        },
+        {
+          "codigo": "03",
+          "nombre": "Vialidad Rural"
+        },
+        {
+          "codigo": "04",
+          "nombre": "Mantenimiento Sist Hidráulico"
+        },
+        {
+          "codigo": "06",
+          "nombre": "Mantenimiento Pavimento Urbano"
+        },
+        {
+          "codigo": "72",
+          "nombre": "Asfalto Barrio 30 de Mayo - Etapa 1"
+        },
+        {
+          "codigo": "87",
+          "nombre": "Mejoras Calles Urbanas III - Pavimento Barrio Escribano"
+        },
+        {
+          "codigo": "96",
+          "nombre": "Mejoramiento de Caminos Rurales"
+        }
+      ]
+    },
+    {
+      "codigo": "45",
+      "nombre": "Espacios Verdes",
+      "jurisdiccion_codigo": "1110119000",
+      "actividades": [
+        {
+          "codigo": "61",
+          "nombre": "Arbolado Espacios Verdes"
+        }
+      ]
+    },
+    {
+      "codigo": "46",
+      "nombre": "Obas Públicas",
+      "jurisdiccion_codigo": "1110119000",
+      "actividades": [
+        {
+          "codigo": "01",
+          "nombre": "Adm y Coor Obras Públicas"
+        },
+        {
+          "codigo": "02",
+          "nombre": "Obras Menores"
+        },
+        {
+          "codigo": "03",
+          "nombre": "Oficina Técnica"
+        },
+        {
+          "codigo": "61",
+          "nombre": "Infraestructura Para 58 Viviendas Barrio 30 de Mayo"
+        },
+        {
+          "codigo": "62",
+          "nombre": "Infraestructura para 38 Viviendas Barrio San Luis"
+        },
+        {
+          "codigo": "81",
+          "nombre": "Remoción de Interferencia Red de Gas Calle Chubut y 26 de Julio"
+        },
+        {
+          "codigo": "97",
+          "nombre": "Reconstrucción Muralla Tramo Escalinatas"
+        },
+        {
+          "codigo": "98",
+          "nombre": "Ext. Red Gas Natural - Cementerio Municipal - Calle Guaminí entre B. Blanca y Las Flores"
+        },
+        {
+          "codigo": "99",
+          "nombre": "Ordenanza 4644 Presupuesto Participativo"
+        }
+      ]
+    },
+    {
+      "codigo": "47",
+      "nombre": "Servicios de Cementerio",
+      "jurisdiccion_codigo": "1110119000",
+      "actividades": []
+    },
+    {
+      "codigo": "60",
+      "nombre": "Promoción del Cuidado del Ambiente para un Desarrollo Sostenible",
+      "jurisdiccion_codigo": "1110119000",
+      "actividades": []
+    },
+    {
+      "codigo": "01",
+      "nombre": "Actividad Central Secretaría de Moderniz. y G. Pública",
+      "jurisdiccion_codigo": "1110120000",
+      "actividades": [
+        {
+          "codigo": "01",
+          "nombre": "Adm y Coord Sec. Moderniz. y G. Públic."
+        },
+        {
+          "codigo": "03",
+          "nombre": "Capital Humano"
+        },
+        {
+          "codigo": "09",
+          "nombre": "Modernización"
+        }
+      ]
+    },
+    {
+      "codigo": "31",
+      "nombre": "Rel Intsitucionales y Comunitarias",
+      "jurisdiccion_codigo": "1110120000",
+      "actividades": []
+    },
+    {
+      "codigo": "32",
+      "nombre": "Cooperación Internacional y Rel. Interjurisdiccionales",
+      "jurisdiccion_codigo": "1110120000",
+      "actividades": []
+    },
+    {
+      "codigo": "01",
+      "nombre": "Actividad Central",
+      "jurisdiccion_codigo": "1110200000",
+      "actividades": []
+    }
+  ],
+  "gastos_objeto": [
+    {
+      "codigo": "1.0.0",
+      "nombre": "Gastos en personal"
+    },
+    {
+      "codigo": "1.1.0",
+      "nombre": "Personal permanente"
+    },
+    {
+      "codigo": "1.2.0",
+      "nombre": "Personal temporario"
+    },
+    {
+      "codigo": "1.3.0",
+      "nombre": "Servicios extraordinarios"
+    },
+    {
+      "codigo": "1.4.0",
+      "nombre": "Asignaciones familiares"
+    },
+    {
+      "codigo": "1.6.0",
+      "nombre": "Beneficios y compensaciones"
+    },
+    {
+      "codigo": "2.0.0",
+      "nombre": "Bienes de consumo"
+    },
+    {
+      "codigo": "2.1.0",
+      "nombre": "Productos alimenticios agropecuarios y forestales"
+    },
+    {
+      "codigo": "2.2.0",
+      "nombre": "Textiles y vestuario"
+    },
+    {
+      "codigo": "2.3.0",
+      "nombre": "Productos de papel, cartón e impresos"
+    },
+    {
+      "codigo": "2.4.0",
+      "nombre": "Productos de cuero y caucho"
+    },
+    {
+      "codigo": "2.5.0",
+      "nombre": "Productos químicos, combustibles y lubricantes"
+    },
+    {
+      "codigo": "2.6.0",
+      "nombre": "Productos de minerales no metálicos"
+    },
+    {
+      "codigo": "2.7.0",
+      "nombre": "Productos metálicos"
+    },
+    {
+      "codigo": "2.8.0",
+      "nombre": "Minerales"
+    },
+    {
+      "codigo": "2.9.0",
+      "nombre": "Otros bienes de consumo"
+    },
+    {
+      "codigo": "3.0.0",
+      "nombre": "Servicios no personales"
+    },
+    {
+      "codigo": "3.1.0",
+      "nombre": "Servicios básicos"
+    },
+    {
+      "codigo": "3.2.0",
+      "nombre": "Alquileres y derechos"
+    },
+    {
+      "codigo": "3.3.0",
+      "nombre": "Mantenimiento, reparación y limpieza"
+    },
+    {
+      "codigo": "3.4.0",
+      "nombre": "Servicios técnicos y profesionales"
+    },
+    {
+      "codigo": "3.5.0",
+      "nombre": "Servicios comerciales y financieros"
+    },
+    {
+      "codigo": "3.6.0",
+      "nombre": "Publicidad y propaganda"
+    },
+    {
+      "codigo": "3.7.0",
+      "nombre": "Pasajes y viáticos"
+    },
+    {
+      "codigo": "3.8.0",
+      "nombre": "Impuestos, derechos y tasas"
+    },
+    {
+      "codigo": "3.9.0",
+      "nombre": "Otros servicios"
+    },
+    {
+      "codigo": "4.0.0",
+      "nombre": "Bienes de uso"
+    },
+    {
+      "codigo": "4.1.0",
+      "nombre": "Bienes preexistentes"
+    },
+    {
+      "codigo": "4.2.0",
+      "nombre": "Construcciones"
+    },
+    {
+      "codigo": "4.3.0",
+      "nombre": "Maquinaria y equipo"
+    },
+    {
+      "codigo": "4.4.0",
+      "nombre": "Equipo de seguridad"
+    },
+    {
+      "codigo": "4.6.0",
+      "nombre": "Obras de arte"
+    },
+    {
+      "codigo": "5.0.0",
+      "nombre": "Transferencias"
+    },
+    {
+      "codigo": "5.1.0",
+      "nombre": "Transferencias al sector privado para financiar gastos corrientes"
+    },
+    {
+      "codigo": "5.2.0",
+      "nombre": "Transferencias al sector privado para financiar gastos de capital"
+    },
+    {
+      "codigo": "5.3.0",
+      "nombre": "Transferencias al Sector Público Nacional, al Sector Público Provincial y al Sector Público Municipal para financiar gastos corrientes"
+    },
+    {
+      "codigo": "6.0.0",
+      "nombre": "Activos financieros"
+    },
+    {
+      "codigo": "6.2.0",
+      "nombre": "Préstamos a corto plazo"
+    }
+  ],
+  "recursos_rubro": [
+    {
+      "codigo": "1140100",
+      "nombre": "Coparticipación de Impuestos Ley 10.752"
+    },
+    {
+      "codigo": "1140300",
+      "nombre": "Fondo de Fortalecimiento Fiscal Municipal - Ley 15.480"
+    },
+    {
+      "codigo": "1140500",
+      "nombre": "Participación Prode y Casinos"
+    },
+    {
+      "codigo": "1140600",
+      "nombre": "Participación Bingo"
+    },
+    {
+      "codigo": "1140800",
+      "nombre": "Participación Máquinas Eléctricas"
+    },
+    {
+      "codigo": "1140900",
+      "nombre": "Fondo Fortalecimientos Programas Sociales"
+    },
+    {
+      "codigo": "1141000",
+      "nombre": "Tratamiento y Disposición Final de Residuos - Ley 13.403"
+    },
+    {
+      "codigo": "1141100",
+      "nombre": "Fondo Fortalecimiento de Recursos - Ley 13850"
+    },
+    {
+      "codigo": "1141200",
+      "nombre": "Fondo de Inclusión Social"
+    },
+    {
+      "codigo": "1141300",
+      "nombre": "Fondo Educativo"
+    },
+    {
+      "codigo": "1141700",
+      "nombre": "Plan de Pago ARBA - Ley 14890  Art. 4"
+    },
+    {
+      "codigo": "1190101",
+      "nombre": "Descentralización Administrativa y Tributaria - No Afectada"
+    },
+    {
+      "codigo": "1190102",
+      "nombre": "Decentr. Admi. y Tribut. Afectada - Fondo Compensador"
+    },
+    {
+      "codigo": "1190400",
+      "nombre": "Corredor Vial del Atlántico - Ley 14.105"
+    },
+    {
+      "codigo": "1210101",
+      "nombre": "Servicios Generales del Ejercicio - Chascomús"
+    },
+    {
+      "codigo": "1210102",
+      "nombre": "Alumbrado, barrido y limpieza de Ejercicios Anteriores -Chascomús"
+    },
+    {
+      "codigo": "1210201",
+      "nombre": "Servicios Rurales del Ejercicio - Chascomús"
+    },
+    {
+      "codigo": "1210202",
+      "nombre": "Servicios Rurales de Ejercicios Anteriores - Chascomús"
+    },
+    {
+      "codigo": "1210300",
+      "nombre": "Servicios Varios"
+    },
+    {
+      "codigo": "1210401",
+      "nombre": "Habilitación, Autorización o Permiso Del Ejercicio"
+    },
+    {
+      "codigo": "1210501",
+      "nombre": "Inspección de Seguridad e Higiene del Ejercicio -Chascomús"
+    },
+    {
+      "codigo": "1210502",
+      "nombre": "Inspección de Seguridad e Higiene de Ejercicios Anteriores - Chascomús"
+    },
+    {
+      "codigo": "1210901",
+      "nombre": "Control de marcas y señales - Chascomús"
+    },
+    {
+      "codigo": "1211100",
+      "nombre": "Tasa de Seguridad Ambiental"
+    },
+    {
+      "codigo": "1211501",
+      "nombre": "Alumbrado público del Ejercicio - Chascomús"
+    },
+    {
+      "codigo": "1211505",
+      "nombre": "Alumbrado Público EDEA"
+    },
+    {
+      "codigo": "1211601",
+      "nombre": "Servicios sanitarios del Ejercicio - Chascomús"
+    },
+    {
+      "codigo": "1211602",
+      "nombre": "Servicios sanitarios de Ejercicios Anteriores - Chascomús"
+    },
+    {
+      "codigo": "1211701",
+      "nombre": "Servicios Especiales de Limpieza e Higiene - Chascomús"
+    },
+    {
+      "codigo": "1212001",
+      "nombre": "Antenas y Equipos Complementarios Del Ejercicio"
+    },
+    {
+      "codigo": "1212201",
+      "nombre": "Servicios Asistenciales -  Chascomús"
+    },
+    {
+      "codigo": "1220101",
+      "nombre": "Espectáculos Públicos - Chascomús"
+    },
+    {
+      "codigo": "1220102",
+      "nombre": "Espectáculos Públicos - Eventos Deportivos"
+    },
+    {
+      "codigo": "1220301",
+      "nombre": "Publicidad y propaganda del Ejerciocio - Chascomús"
+    },
+    {
+      "codigo": "1220302",
+      "nombre": "Publicidad y propaganda de Ejerciocios Anteriores -Chascomús"
+    },
+    {
+      "codigo": "1220400",
+      "nombre": "Conexión red de Agua y Cloacas e Inst. de Medidores"
+    },
+    {
+      "codigo": "1220501",
+      "nombre": "Ocupación y Uso de Espacios Públicos - Chascomús"
+    },
+    {
+      "codigo": "1220801",
+      "nombre": "Cementerio - Chascomús"
+    },
+    {
+      "codigo": "1221001",
+      "nombre": "Patentes de rodados - Chascomús"
+    },
+    {
+      "codigo": "1221003",
+      "nombre": "Patentes e Impuestos SUCERP"
+    },
+    {
+      "codigo": "1221004",
+      "nombre": "Patentes de Rodados - Automotores"
+    },
+    {
+      "codigo": "1221201",
+      "nombre": "De Oficina - Chasco"
+    },
+    {
+      "codigo": "1221203",
+      "nombre": "Derechos de Oficina - Prescipciones"
+    },
+    {
+      "codigo": "1221204",
+      "nombre": "Carnet de Conducir"
+    },
+    {
+      "codigo": "1221303",
+      "nombre": "Servicios Vinculados a la Ingenieria - Chascomús"
+    },
+    {
+      "codigo": "1221400",
+      "nombre": "Derecho por Estacionamiento Medido"
+    },
+    {
+      "codigo": "1229901",
+      "nombre": "Contribución EDEA - Ley 11.769 Art 75. -  Ley 9226"
+    },
+    {
+      "codigo": "1229902",
+      "nombre": "Contribución CPESP Pipinas - Ley 11.769 Art 75 - Ley 9226 - Ord 5804/24"
+    },
+    {
+      "codigo": "1260308",
+      "nombre": "Multas Sistema Estacionamiento Medido"
+    },
+    {
+      "codigo": "1260309",
+      "nombre": "Multas ACARA"
+    },
+    {
+      "codigo": "1290201",
+      "nombre": "Ingresos Varios - Chascomús"
+    },
+    {
+      "codigo": "1290400",
+      "nombre": "Fondo de Cloacas"
+    },
+    {
+      "codigo": "1290500",
+      "nombre": "Fondo de Lucha contra las Plagas"
+    },
+    {
+      "codigo": "1290600",
+      "nombre": "Fondo de Defensa Civil"
+    },
+    {
+      "codigo": "1290701",
+      "nombre": "Fondo de Asistencia al Discapacitado - Chascomús"
+    },
+    {
+      "codigo": "1290800",
+      "nombre": "Fondo Teatro Municipal"
+    },
+    {
+      "codigo": "1290900",
+      "nombre": "Fondo de Rifas"
+    },
+    {
+      "codigo": "1291001",
+      "nombre": "Locacion de Bienes Municipales - Chascomús"
+    },
+    {
+      "codigo": "1291100",
+      "nombre": "Ingresos Hogar de Ancianos"
+    },
+    {
+      "codigo": "1620200",
+      "nombre": "Intereses por Plazo Fijo"
+    },
+    {
+      "codigo": "1620400",
+      "nombre": "Intereses Banco Provincia Plazo Fijo"
+    },
+    {
+      "codigo": "1621000",
+      "nombre": "Intereses Banco Provincia Fondo Común de Inversión"
+    },
+    {
+      "codigo": "1750101",
+      "nombre": "Ley 13178 - Comercializ. De Bebidas Alcoholicas"
+    },
+    {
+      "codigo": "1750120",
+      "nombre": "Min. Des. Social - Programa Envión"
+    },
+    {
+      "codigo": "1750130",
+      "nombre": "Plan Nacer"
+    },
+    {
+      "codigo": "1750148",
+      "nombre": "Ley 13.482 - Fondo para el Mantenimiento de la Policía Comunal"
+    },
+    {
+      "codigo": "1750406",
+      "nombre": "Convenio DIEGEP - Escuela Municipal N°1"
+    },
+    {
+      "codigo": "1750407",
+      "nombre": "Convenio DIEGEP - Escuela Municipal N°2"
+    },
+    {
+      "codigo": "1750408",
+      "nombre": "Convenio DIEGEP - Escuela Municipal N°3"
+    },
+    {
+      "codigo": "1750409",
+      "nombre": "Convenio DIEGEP - Jardín Maternal N°1"
+    },
+    {
+      "codigo": "1750410",
+      "nombre": "Convenio BIENESTAR SOCIAL -Becas Guardería"
+    },
+    {
+      "codigo": "1750415",
+      "nombre": "Convenio MINISTERIO DE ACCION SOCIAL - Becas Pre-egreso"
+    },
+    {
+      "codigo": "2110501",
+      "nombre": "Venta de Inmuebles - Chascomús"
+    },
+    {
+      "codigo": "2120100",
+      "nombre": "Contribución por mejoras - Chascomús"
+    },
+    {
+      "codigo": "2120200",
+      "nombre": "Contribución por Mejoras - Alcantarillado"
+    },
+    {
+      "codigo": "2120600",
+      "nombre": "Contribución por Mejoras - Tendido de Red de Gas Natural -Ord. Nro 3706/07"
+    },
+    {
+      "codigo": "2210101",
+      "nombre": "Consorcios - Pavimentos Chascomús"
+    },
+    {
+      "codigo": "3310200",
+      "nombre": "Anticipo Jubilatorio - Reintegro"
+    },
+    {
+      "codigo": "3430407",
+      "nombre": "Instituto de la Vivienda - Reintegro Gallo Blanco y Altos ded Castelar"
+    }
+  ]
+}
